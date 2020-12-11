@@ -1,0 +1,14 @@
+.container{
+
+    display: flex;
+    padding: 30px 15px;
+
+}
+
+.aside-filters{
+    width: 20%;
+}
+.hotels-results{
+    width: 80%;
+    padding: 30px 0px 30px 30px;
+}

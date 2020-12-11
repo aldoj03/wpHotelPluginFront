@@ -1,1 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+:root{
+
+    --dark-font: rgb(65, 65, 65);
+    --light-font: rgb(82, 82, 82);
+    --lighter-font: rgb(153, 153, 153);
+    --blue:#05528f;
+    --light-blue:#05518fc9;
+    --red:#df1f25;
+    --gold:#f8b018;
+
+}
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+.button-custom{
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 18px;
+    font-size: 16px;
+    /* box-shadow: 0px 6px 14px -5px #05528fdb; */
+    outline: none;
+    cursor: pointer;
+    transition: 300ms;
+}
+
+.button-custom:hover{
+    /* box-shadow: 0px 6px 10px -5px #05528fdb; */
+    transform: translateY(-5px);
+}

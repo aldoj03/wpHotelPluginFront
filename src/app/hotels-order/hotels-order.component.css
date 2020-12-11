@@ -1,0 +1,96 @@
+.hotels-order-container{
+    padding: 10px;
+    background: #f1f3f3;
+    margin-bottom: 30px;
+}
+
+.hotels-order-container p{
+    color: var(--light-font);
+    font-size: 22px;
+}
+.order-content{
+    display: flex;
+    padding-left: 10px;
+}
+.hotels-order-container .order-items-container{
+    margin-right: 10px;
+    background: white;
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left:  8px;
+    box-shadow: 0px 7px 6px -4px #80808042;
+}
+
+.hotels-order-container h5{
+    color: var(--lighter-font);
+    margin-right: 15px;
+}
+
+.order-items{
+    flex: 1;
+    display: flex;
+    justify-content: space-around;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--lighter-font);
+    align-items: center;
+    height: 100%;
+}
+
+.order-item{
+    flex: 1;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    cursor: pointer;
+    transition: 300ms;
+    border-bottom: 2px solid transparent;
+
+}
+
+.order-item:hover{
+    background: rgba(148, 148, 148, 0.062);
+    color: var(--gold);
+    border-bottom: 2px solid var(--gold) ;
+}
+
+.order-item.active{
+    color: var(--gold);
+    border-bottom: 2px solid var(--gold) ;
+}
+
+.map-button {
+    padding: 0 8px;
+    color: var(--blue);
+    background: white;
+    display: flex;
+    align-items: center;
+    outline: none;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    border: 2px solid var(--blue);
+    font-weight: 600;
+    transition: 300ms;
+    box-shadow: inset 0px 0px 13px 0px transparent;
+
+}
+
+.map-button:hover {
+    background: var(--blue);
+    color: white;
+}
+.map-button:hover svg{
+    fill:white;
+}
+
+.map-button svg{
+    transition: 400ms;
+    width: 30px;
+    margin-right: 8px;
+    fill: var(--blue);
+}

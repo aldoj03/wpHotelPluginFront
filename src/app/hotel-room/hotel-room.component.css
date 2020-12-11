@@ -1,0 +1,83 @@
+.room{
+    padding: 16px;
+}
+.offer-header{
+    display: grid;
+    grid-template-columns: 25% 60% 15%;
+    align-items: center;
+    
+}
+
+.room-offer-content{
+    display: grid;
+    grid-template-columns: 25% 75%;
+    padding: 10px;
+    border-top: 1px solid rgba(128, 128, 128, 0.247);
+    margin-top: 10px;
+
+}
+.ofertas-liston{
+   
+    position: relative;
+    left: -26px;
+    background: var(--blue);
+    color: gold;
+    font-size: 18px;
+    padding: 8px;
+    max-width: 200px;
+    
+
+}
+.ofertas-liston::before{
+    position: absolute;
+    right: -23px;
+    content: '';
+    top: 0px;
+    width: 0;
+    height: 0;
+    border-left: 23px solid var(--blue);
+    border-top: 19px solid transparent;
+    border-bottom: 18px solid transparent;
+
+}
+.ofertas-liston::after{
+    position: absolute;
+    right: 0px;
+    content: '';
+    top: 15px;
+    width: 6px;
+    height: 6px;
+    background: white;
+    border-radius: 100%;
+    
+
+}
+.offer-subtitle{
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--light-blue);
+}
+.ofertas-liston span{
+    color: white;
+    margin-left: 6px;
+    font-size: 11px;
+}
+
+.room-title{
+    color: var(--light-blue);
+    font-weight: 600;
+    border-right: 1px solid rgba(128, 128, 128, 0.247);
+
+}
+
+.button-blue{
+    background: var(--blue);
+   
+    box-shadow: 0px 6px 14px -5px #05528fdb;
+  
+}
+
+.button-blue:hover{
+    box-shadow: 0px 6px 10px -5px #05528fdb;
+    transform: translateY(-5px);
+}
