@@ -11,7 +11,7 @@
 .room-offer-content{
     display: grid;
     grid-template-columns: 25% 75%;
-    padding: 10px;
+    padding: 10px 0;
     border-top: 1px solid rgba(128, 128, 128, 0.247);
     margin-top: 10px;
 
@@ -80,4 +80,49 @@
 .button-blue:hover{
     box-shadow: 0px 6px 10px -5px #05528fdb;
     transform: translateY(-5px);
+}
+
+@media (max-width:990px){
+    .room-offer-content{
+        padding: 10px 0px;
+    }
+
+}
+@media (max-width:900px){
+    
+    .offer-header{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .offer-subtitle{
+        width: 80%;
+    }
+    .login-btn-container{
+        width: 20%;
+    }
+}
+@media (max-width:700px){
+    
+    
+    .offer-subtitle{
+        width: 70%;
+    }
+    .room-offer-content{
+        grid-template-columns: 30% 70%;
+      
+    }
+    .login-btn-container{
+        width: 30%;
+    }
+    .offer-subtitle{
+        font-size: 13px;
+    }
+    .login-btn-container button{
+        font-size: 13px;
+    }
+    .ofertas-liston{
+        margin-bottom: 8px;
+    }
+   
 }

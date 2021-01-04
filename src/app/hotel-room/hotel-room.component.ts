@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Room } from '../model-response';
 
 @Component({
   selector: 'app-hotel-room',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HotelRoomComponent implements OnInit {
 
+  @Input() room:Room;
+  @Input() checkDays:any;
+
+
   constructor() { }
 
   ngOnInit(): void {
+
+    console.log(this.room);
+    
   }
 
 }

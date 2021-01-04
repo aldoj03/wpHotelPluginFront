@@ -13,7 +13,6 @@
 .button-gold{
     background: #f8b018;
     box-shadow: 0px 6px 14px -5px #f8b118d0;
-    padding: 13px 35px;
 
 }
 .button-gold:hover{
@@ -25,6 +24,24 @@
     margin: 0;
     text-align: right;
 
+}
+.precio-final .priceWithoutOffer span{
+    font-size: 13px;
+    color: rgba(128, 128, 128, 0.5);
+    position: relative;
+}
+.precio-final .priceWithoutOffer span::before{
+   content: '';
+   width: 1px;
+   height: 100%;
+   position: absolute;
+   right: 0;
+   left: 0;
+   bottom: 0;
+   margin: auto;
+   top: 0;
+   background: red;
+   transform: rotateZ(45deg);
 }
 .precio-final{
     padding-right: 25px;
@@ -50,4 +67,30 @@
     color: var(--lighter-font);
     font-size: 13px;
     font-weight: 500;
+}
+
+
+@media (max-width: 700px){
+    .offers-info-container{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+    .offers-info-container div{
+        padding: 0;
+    }
+    .offers-info-container p{
+        text-align: center;
+    }
+    .precio-final{
+        align-self: unset;
+    }
+    .offers-info-container button{
+        margin-top: 16px;
+    }
+    .button-gold{
+        padding: 0 38px;
+    }
+    
 }

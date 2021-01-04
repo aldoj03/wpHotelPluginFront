@@ -7,9 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AsideFiltersComponent implements OnInit {
 
+  public toggled:boolean = false; 
+  public point:number  = null; 
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  toggleAside(){
+    this.toggled = !this.toggled
+    
+  }
+
+  setPoint(point:number){
+    this.point = point
   }
 
 }

@@ -6,12 +6,17 @@
             </div>
         </div>
         <div class="offer-subtitle">Disfruta de las mejores ofertas en este hotel solo por ser cliente registrado</div>
-        <div>
+        <div class="login-btn-container">
             <button class="button-blue button-custom">iniciar sesion</button>
         </div>
     </div>
     <div class="room-offer-content">
-        <div class="room-title">Habitacion superior</div>
-        <app-offer></app-offer>
+        <div class="room-title">{{room.name}}</div>
+        <div>
+            <ng-container *ngFor="let rate of room.rates">
+                <app-offer [rate]="rate" [checkDays]="checkDays"></app-offer>
+            </ng-container>
+
+        </div>
     </div>
 </div>

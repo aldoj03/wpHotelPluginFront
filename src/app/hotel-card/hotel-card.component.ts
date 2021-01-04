@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Hotel, Room } from '../model-response';
+import { HotelService } from '../services/hotel.service';
 
 @Component({
   selector: 'app-hotel-card',
@@ -7,18 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HotelCardComponent implements OnInit {
 
-  public expandRoomsContent:boolean;
-  public rooms:Array<any>;
+  public expandRoomsContent: boolean;
+  public rooms: Array<Room>;
+  @Input() hotel: Hotel;
+  @Input() checkDays: Hotel;
 
-  constructor() {
-    this.rooms = [1,2,3,4];
+  constructor(
+    private hotelService: HotelService
+  ) {
     this.expandRoomsContent = false
-   }
-
-  ngOnInit(): void {
   }
 
-  toggleMoreRooms(){
+  ngOnInit(): void {
+    this.hotelService.getHotelDetails(this.hotel.code).subscribe(val => console.log(val))
+    this.rooms = this.hotel.rooms;
+  }
+
+  toggleMoreRooms() {
     this.expandRoomsContent = !this.expandRoomsContent
   }
 

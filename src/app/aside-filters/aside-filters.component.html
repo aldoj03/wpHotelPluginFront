@@ -1,12 +1,21 @@
-<aside>
+<button (click)="toggleAside()" class="aside-button">
+    <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="bars"
+     role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"
+      class="svg-inline--fa fa-bars fa-w-14 fa-3x">
+      <path fill="white" 
+      d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z" 
+      class=""></path></svg>
+</button>
+<div class="mask" *ngIf="toggled"></div>
+<aside [class.toggled]="toggled">
     <div class="filter">
         <h3>Valoración</h3>
         <div class="valoracion-container">
-            <div>0+</div>
-            <div>5+</div>
-            <div>6+</div>
-            <div>7+</div>
-            <div>8+</div>
+            <div (click)="setPoint(0)" [class.innactive]="point > 0 && point != null" >0+</div>
+            <div (click)="setPoint(5)" [class.innactive]="point > 5 && point != null">5+</div>
+            <div (click)="setPoint(6)" [class.innactive]="point > 6 && point != null">6+</div>
+            <div (click)="setPoint(7)" [class.innactive]="point > 7 && point != null">7+</div>
+            <div (click)="setPoint(8)" >8+</div>
         </div>
     </div>
     <div class="filter">

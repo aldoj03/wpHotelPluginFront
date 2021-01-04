@@ -8,6 +8,7 @@ import { HotelsOrderComponent } from './hotels-order/hotels-order.component';
 import { HotelCardComponent } from './hotel-card/hotel-card.component';
 import { HotelRoomComponent } from './hotel-room/hotel-room.component';
 import { OfferComponent } from './offer/offer.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { OfferComponent } from './offer/offer.component';
     OfferComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

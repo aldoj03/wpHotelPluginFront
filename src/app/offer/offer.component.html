@@ -1,13 +1,16 @@
 <div class="offers-info-container">
     <div class="offer-type">
-        <p>solo alojamiento</p>
+        <p>{{rate.boardName}}</p>
     </div>
     <div class="precio-noche">
-        57 € <span>/noche (x2)</span> 
+        {{pricePerDay | number:'1.0-0'}} € <span>/ noche</span>
     </div>
     <div class="precio-final">
-        <p>115 €</p>
-        <p>Precio final para 2 noches</p>
+        <p *ngIf="offer == 0; else priceOffer">{{rate.net | number:'1.0-0'}} €</p>
+        <ng-template #priceOffer>
+            <p class="priceWithoutOffer">{{princeWhithOffer | number:'1.0-0'}} € <span>{{rate.net | number:'1.0-0'}} €</span></p>
+        </ng-template>
+        <p>Precio final para {{daysToBook}} noches</p>
     </div>
     <div>
         <button class="button-custom button-gold">Reservar</button>
