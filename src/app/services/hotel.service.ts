@@ -21,4 +21,20 @@ export class HotelService {
 
     return this.httpClient.get(endPoint);
   }
+
+  calcPricePerDay(){
+
+  }
+
+  public calDayToBook(checkIn, checkOut){
+    const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+    const firstDate = new Date(checkIn).getTime();
+    const secondDate = new Date(checkOut).getTime();
+
+    const daysToBook = Math.round(Math.abs((firstDate - secondDate) / oneDay));
+
+    return daysToBook;
+  }
+
+  
 }

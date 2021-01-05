@@ -6,9 +6,10 @@
         {{pricePerDay | number:'1.0-0'}} € <span>/ noche</span>
     </div>
     <div class="precio-final">
-        <p *ngIf="offer == 0; else priceOffer">{{rate.net | number:'1.0-0'}} €</p>
+        <p *ngIf="!offer; else priceOffer">{{rate.net | number:'1.0-0'}} €</p>
         <ng-template #priceOffer>
             <p class="priceWithoutOffer">{{princeWhithOffer | number:'1.0-0'}} € <span>{{rate.net | number:'1.0-0'}} €</span></p>
+            <p class="">{{offer.name}}</p>
         </ng-template>
         <p>Precio final para {{daysToBook}} noches</p>
     </div>

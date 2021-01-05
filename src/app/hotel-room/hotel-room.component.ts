@@ -9,14 +9,13 @@ import { Room } from '../model-response';
 export class HotelRoomComponent implements OnInit {
 
   @Input() room:Room;
-  @Input() checkDays:any;
+  @Input() daysToBook:any;
 
 
   constructor() { }
 
   ngOnInit(): void {
 
-    console.log(this.room);
     
   }
 

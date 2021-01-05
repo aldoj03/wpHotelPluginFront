@@ -14,7 +14,7 @@
         <div class="room-title">{{room.name}}</div>
         <div>
             <ng-container *ngFor="let rate of room.rates">
-                <app-offer [rate]="rate" [checkDays]="checkDays"></app-offer>
+                <app-offer [rate]="rate" [daysToBook]="daysToBook"></app-offer>
             </ng-container>
 
         </div>

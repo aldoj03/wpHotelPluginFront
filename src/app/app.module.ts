@@ -18,11 +18,11 @@ import { HttpClientModule } from '@angular/common/http';
     HotelsOrderComponent,
     HotelCardComponent,
     HotelRoomComponent,
-    OfferComponent
+    OfferComponent,
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

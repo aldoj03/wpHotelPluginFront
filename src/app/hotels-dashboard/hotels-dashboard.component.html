@@ -1,10 +1,15 @@
 <div class="container">
     <div class="aside-filters">
-        <app-aside-filters></app-aside-filters>
+        <app-aside-filters
+         [pricesFilter]="pricesFilter"
+        [categoriesFilter]="categoriesFilter"
+        [searchString]="searchString"
+        (sendFilter)="filterHotels()"
+        ></app-aside-filters>
     </div>
     <div class="hotels-results">
         <app-hotels-order></app-hotels-order>
-        <ng-container *ngFor="let hotel of hotels; trackBy:identify">
+        <ng-container *ngFor="let hotel of hotelsFiltered; trackBy:identify">
             <app-hotel-card [checkDays]="checkDays" [hotel]="hotel"></app-hotel-card>
         </ng-container>
     </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { tick } from '@angular/core/testing';
 import { Rate } from '../model-response';
 
 @Component({
@@ -9,31 +10,28 @@ import { Rate } from '../model-response';
 export class OfferComponent implements OnInit {
 
   @Input() rate:Rate;
-  @Input() checkDays:any;
+  @Input() daysToBook:number;
 
-  public daysToBook:number;
+  public offer:any;
   public pricePerDay:number;
-  public offer:number;
   public princeWhithOffer:number;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.calcDaysToBook()
-    this.offer = this.rate.offers ?   Number(this.rate.offers[0].amount) : 0
-    this.princeWhithOffer = this.offer != 0 ? Number(this.rate.net) - Math.abs( Number(this.offer)) : 0
-    console.log(this.princeWhithOffer);
-    
+    this.initValues()
   }
+  
+  initValues(){
+    this.offer = this.rate.offers ?   this.rate.offers[0] : null
+    if(this.offer){
+      this.princeWhithOffer = Number(this.offer.amount) != 0 ? Number(this.rate.net) - Math.abs( Number(this.offer.amount)) : 0
 
-  calcDaysToBook() {
-    const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
-    const firstDate = new Date(this.checkDays.checkIn).getTime();
-    const secondDate = new Date(this.checkDays.checkOut).getTime();
-
-    this.daysToBook = Math.round(Math.abs((firstDate - secondDate) / oneDay));
+    }
     this.pricePerDay = Number(this.rate.net) / this.daysToBook
 
   }
+
+  
 
 }

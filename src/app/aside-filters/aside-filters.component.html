@@ -20,37 +20,13 @@
     </div>
     <div class="filter">
         <h3>Precio por noche</h3>
-        <div class="check-container">
-            <label class="container " name="precio-noche">0 € - 50 €
-                <input type="checkbox">
-                <span class="checkmark"></span>
-            </label>
-            <span>(14)</span>
-        </div>
-        <div class="check-container">
-            <label class="container " name="precio-noche">50 € - 100 €
-                <input type="checkbox">
-                <span class="checkmark"></span>
-            </label>
-            <span>(14)</span>
-        </div>
-        <div class="check-container">
-            <label class="container " name="precio-noche">100 € - 150 €
-                <input type="checkbox">
-                <span class="checkmark"></span>
-            </label>
-            <span>(14)</span>
-        </div>
-        <div class="check-container">
-            <label class="container " name="precio-noche">150 € - 200 €
-                <input type="checkbox">
-                <span class="checkmark"></span>
-            </label>
-            <span>(14)</span>
-        </div>
-        <div class="check-container">
-            <label class="container " name="precio-noche">200 € +
-                <input type="checkbox">
+        <div class="check-container" 
+         *ngFor="let filterPrice of pricesFilterModel;let i = index">
+            <label class="container ">
+                {{filterPrice.text}}
+                <input type="checkbox" 
+                name="precio-noche-{{i}}" 
+                (change)="setPriceFilter(filterPrice.min + '-' + filterPrice.max)">
                 <span class="checkmark"></span>
             </label>
             <span>(14)</span>
@@ -58,37 +34,10 @@
     </div>
     <div class="filter">
         <h3>Categoría</h3>
-        <div class="check-container">
-            <label class="container " name="categoria">5 Estrellas
-                <input type="checkbox">
-                <span class="checkmark"></span>
-            </label>
-            <span>(14)</span>
-        </div>
-        <div class="check-container">
-            <label class="container " name="categoria">4 Estrellas
-                <input type="checkbox">
-                <span class="checkmark"></span>
-            </label>
-            <span>(14)</span>
-        </div>
-        <div class="check-container">
-            <label class="container " name="categoria">3 Estrellas
-                <input type="checkbox">
-                <span class="checkmark"></span>
-            </label>
-            <span>(14)</span>
-        </div>
-        <div class="check-container">
-            <label class="container " name="categoria">2 Estrellas
-                <input type="checkbox">
-                <span class="checkmark"></span>
-            </label>
-            <span>(14)</span>
-        </div>
-        <div class="check-container">
-            <label class="container " name="categoria">1 Estrellas
-                <input type="checkbox">
+        <div class="check-container" *ngFor="let category of categoriesFilterModel">
+            <label class="container " >{{category.text}}
+                <input type="checkbox" name="categoria-{{i}}" 
+                (change)="setCategoryValue(category.value)">                 
                 <span class="checkmark"></span>
             </label>
             <span>(14)</span>
@@ -143,7 +92,10 @@
     </div>
     <div class="filter">
         <h3>Hotel</h3>
-        <input type="text" name="hotel-name" id="search-text" placeholder="Escribe el nombre del hotel...">
+        <input type="text" name="hotel-name"
+         id="search-text" 
+        (keyup)="searchByName( $event.target.value )"
+         placeholder="Escribe el nombre del hotel...">
     </div>
     <div class="filter">
         <h3>Servicios destacados</h3>
