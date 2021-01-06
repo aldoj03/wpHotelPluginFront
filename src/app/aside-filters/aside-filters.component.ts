@@ -10,8 +10,8 @@ export class AsideFiltersComponent implements OnInit {
   public toggled: boolean = false;
   @Input() pricesFilter: Array<any>;
   @Input() categoriesFilter;
-  @Input() searchString : string;
   @Output() sendFilter = new EventEmitter();
+  @Output() setSearchString = new EventEmitter();
   public pricesFilterModel;
   public categoriesFilterModel;
   public point: number = null;
@@ -45,26 +45,26 @@ export class AsideFiltersComponent implements OnInit {
     ]
     this.categoriesFilterModel = [
       {
-        value: '5',
+        value: '5EST',
         text: '5 Estrellas'
       },
       {
-        value: '4',
+        value: '4EST',
         text: '4 Estrellas'
 
       },
       {
-        value: '3',
+        value: '3EST',
         text: '3 Estrellas'
 
       },
       {
-        value: '2',
+        value: '2EST',
         text: '2 Estrellas'
 
       },
       {
-        value: '1',
+        value: '1EST',
         text: '1 Estrellas'
 
       },
@@ -103,6 +103,7 @@ export class AsideFiltersComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
   toggleAside() {
@@ -114,23 +115,19 @@ export class AsideFiltersComponent implements OnInit {
     this.point = point
   }
 
-  searchByName(value: any) {
-    this.searchString = value
-    if(this.searchString.length > 4){
-      console.log(this.searchString);
+  searchByName(value: string) {
       
-     this.executeFilter()
+      this.setSearchString.emit(value)
 
-    }
-    
+
   }
 
   setPriceFilter(valInput) {
-   
 
-    const array = this.rellenarFiltersArrayValues(valInput,this.pricesFilter)
-    
-    this.pricesFilter = array 
+
+    const array = this.rellenarFiltersArrayValues(valInput, this.pricesFilter)
+
+    this.pricesFilter = array
     this.executeFilter()
 
   }
@@ -138,16 +135,16 @@ export class AsideFiltersComponent implements OnInit {
   executeFilter() { this.sendFilter.emit(true) }
 
   setCategoryValue(valInput: number) {
-    const array = this.rellenarFiltersArrayValues(valInput,this.categoriesFilter)
-    
-    this.categoriesFilter = array 
-    
+    const array = this.rellenarFiltersArrayValues(valInput, this.categoriesFilter)
+
+    this.categoriesFilter = array
+
     this.executeFilter()
-    
+
   }
 
 
-  rellenarFiltersArrayValues(valInput, arrayToCheck){
+  rellenarFiltersArrayValues(valInput, arrayToCheck) {
     const indexVal = arrayToCheck.indexOf(valInput)
     let localArray = arrayToCheck
     if (indexVal == -1) {

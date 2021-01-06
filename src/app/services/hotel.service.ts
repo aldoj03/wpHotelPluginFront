@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 })
 export class HotelService {
 
-  private url: string = environment.apiUrl
+  private url: string = environment.apiUrlLocal
 
   constructor(
     private httpClient: HttpClient
@@ -22,9 +22,13 @@ export class HotelService {
     return this.httpClient.get(endPoint);
   }
 
-  calcPricePerDay(){
+ getHotels(){
+  const endPoint = this.url + 'hoteles'
+  console.log(endPoint);
+  
+  return this.httpClient.get(endPoint);
 
-  }
+ }
 
   public calDayToBook(checkIn, checkOut){
     const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds

@@ -2,12 +2,12 @@
     <header>
         <div class="hotel-img-container">
             <img src="https://tecnohotelnews.com/wp-content/uploads/2019/04/habitacion-gorka-room-mate.jpg" alt="">
-            <div class="hotel-img-score">Muy bueno <br> 8/10</div>
+            <div class="hotel-img-score">Muy bueno <br> {{hotel.ranking }}/100</div>
         </div>
         <div class="hotel-details-container">
             <div class="hotel-info">
                 <div class="hotel-title-container">
-                    <h3>{{hotel.name}}</h3>
+                    <h3>{{hotel.name.content}}</h3>
                     <div class="stars-container">
                         <ng-container *ngFor="let star of starsNumber">
                             <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" role="img"
@@ -24,12 +24,7 @@
                     <span class="country-flag"></span>
                     <span>Ver en el mapa</span>
                 </div>
-                <p class="hotel-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga excepturi
-                    quos
-                    atque corporis aliquam quod
-                    molestias maxime eveniet blanditiis soluta, aliquid quisquam nesciunt minima nostrum, a nisi aut,
-                    libero
-                    facilis!</p>
+                <p class="hotel-description">{{hotel.description.content}}</p>
             </div>
             <div class="hotel-price">
                 <p>desde <span>{{pricePerDay| number:'1.0-0'}} €</span></p>

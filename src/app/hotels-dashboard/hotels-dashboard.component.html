@@ -3,7 +3,7 @@
         <app-aside-filters
          [pricesFilter]="pricesFilter"
         [categoriesFilter]="categoriesFilter"
-        [searchString]="searchString"
+        (setSearchString)="setSearchString($event)  "
         (sendFilter)="filterHotels()"
         ></app-aside-filters>
     </div>

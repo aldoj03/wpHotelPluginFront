@@ -94,7 +94,7 @@
         <h3>Hotel</h3>
         <input type="text" name="hotel-name"
          id="search-text" 
-        (keyup)="searchByName( $event.target.value )"
+        (input)="searchByName( $event.target.value )"
          placeholder="Escribe el nombre del hotel...">
     </div>
     <div class="filter">
