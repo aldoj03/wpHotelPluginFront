@@ -1,16 +1,18 @@
 <div class="container">
     <div class="aside-filters">
-        <app-aside-filters
-         [pricesFilter]="pricesFilter"
-        [categoriesFilter]="categoriesFilter"
-        (setSearchString)="setSearchString($event)  "
-        (sendFilter)="filterHotels()"
-        ></app-aside-filters>
+        <app-aside-filters [pricesFilter]="pricesFilter" [categoriesFilter]="categoriesFilter"
+            (setSearchString)="setSearchString($event)  " (sendFilter)="filterHotels()"></app-aside-filters>
     </div>
     <div class="hotels-results">
         <app-hotels-order></app-hotels-order>
-        <ng-container *ngFor="let hotel of hotelsFiltered; trackBy:identify">
-            <app-hotel-card [checkDays]="checkDays" [hotel]="hotel"></app-hotel-card>
+        <ng-container *ngIf="hotels;else spiner">
+            <ng-container *ngFor="let hotel of hotelsFiltered; trackBy:identify">
+                <app-hotel-card [checkDays]="checkDays" [hotel]="hotel"></app-hotel-card>
+            </ng-container>
         </ng-container>
     </div>
+    <ng-template #spiner>
+        <div class="spinner"></div>
+    </ng-template>
+
 </div>

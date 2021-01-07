@@ -9,7 +9,7 @@ import { HotelService } from '../services/hotel.service';
 export class HotelsDashboardComponent implements OnInit {
 
 
-  public hotels: Array<any>;
+  public hotels: Array<Hotel>;
   public hotelsFiltered: Array<any>;
   public checkDays: any;
   public pricesFilter: Array<string>;
@@ -108,7 +108,7 @@ export class HotelsDashboardComponent implements OnInit {
     console.log(this.searchString);
 
     if (this.searchString.length < 3) return this.hotelsFiltered
-    let arrayLocal = this.hotelsFiltered.filter(hotel => hotel.name.toLowerCase().includes(this.searchString.toLowerCase()));
+    let arrayLocal = this.hotelsFiltered.filter(hotel => hotel.name.content.toLowerCase().includes(this.searchString.toLowerCase()));
 
     return [...arrayLocal]
   }
@@ -147,7 +147,7 @@ export class HotelsDashboardComponent implements OnInit {
 
       if (this.searchString.length > 3) {
 
-        if (hotel.name.toLowerCase().includes(filtersObject.string.toLowerCase())) {
+        if (hotel.name.content.toLowerCase().includes(filtersObject.string.toLowerCase())) {
 
           arrayLocal.push(hotel)
         }

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { Hotel } from '../model-response';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,7 @@ export class HotelService {
   const endPoint = this.url + 'hoteles'
   console.log(endPoint);
   
-  return this.httpClient.get(endPoint);
+  return this.httpClient.get<Array<Hotel>>(endPoint);
 
  }
 

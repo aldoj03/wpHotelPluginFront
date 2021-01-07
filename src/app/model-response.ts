@@ -11658,7 +11658,7 @@ export interface Hotels {
 
 export interface Hotel {
     code?: number;
-    name?: string;
+    name?: Name;
     categoryCode?: string;
     categoryName?: string;
     destinationCode?: string;
@@ -11732,6 +11732,9 @@ export interface Promotion {
 export interface Taxes {
     taxes: Tax[];
     allIncluded: boolean;
+}
+export interface Name  {
+    content: string;
 }
 
 export interface Tax {
