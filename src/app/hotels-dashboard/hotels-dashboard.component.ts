@@ -24,10 +24,11 @@ export class HotelsDashboardComponent implements OnInit {
   }
 
 
-  ngOnInit(): void {
-    this.hotelService.getHotels().subscribe(val =>{
-      console.log(val);
-      this.hotels = val
+  ngOnInit(): void { 
+    const paramsUrl = '?countryCode=ES&destinationCode=MAD&fields=all&to=40'
+    this.hotelService.getHotelsFiltered({'a':2}).subscribe(val =>{
+      console.log(JSON.parse(val));
+      this.hotels = JSON.parse(val).hotels.hotels
       this.hotelsFiltered = [...this.hotels]
       console.log(this.hotels);
     }
@@ -47,16 +48,19 @@ export class HotelsDashboardComponent implements OnInit {
 
   filterHotels() {
 
-    this.hotelsFiltered = this.filterPrice()
+    // this.hotelsFiltered = this.filterPrice()
     // console.log(this.hotelsFiltered);
 
-    this.hotelsFiltered = this.filterCategory()
+    // this.hotelsFiltered = this.filterCategory()
     // console.log(this.hotelsFiltered);
 
-    this.hotelsFiltered = this.filterSeachString()
+    // this.hotelsFiltered = this.filterSeachString()
     // console.log(this.hotelsFiltered);
 
     // this.hotelsFiltered = this.filterGlobal()
+
+    this.getFilteredHotels()
+
 
   }
 
@@ -182,5 +186,31 @@ export class HotelsDashboardComponent implements OnInit {
     console.log(arrayLocal);
 
     return [...arrayLocal]
+  }
+
+
+  getFilteredHotels(){
+
+
+    let params = [];
+    this.pricesFilter.map((val, index) => {
+      const stringSeperated = val.split('-')
+      const min = Number(stringSeperated[0])
+      const max = Number(stringSeperated[1])
+
+      params.push({ min, max })
+    })
+    const filtersObject = {
+      price: params,
+      category: this.categoriesFilter,
+      string: this.searchString
+    }
+
+    console.log(filtersObject);
+    const paramsUrl = '?countryCode=ES&destinationCode=MAD&fields=all&to=40'
+    this.hotelService.getHotelsFiltered(filtersObject).subscribe(hotels=>{
+      console.log((hotels));
+      
+    })
   }
 }

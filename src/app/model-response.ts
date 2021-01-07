@@ -11671,6 +11671,8 @@ export interface Hotel {
     minRate?: string;
     maxRate?: string;
     currency?: string;
+    description?: Description
+    ranking?: string
 }
 
 
@@ -11734,6 +11736,9 @@ export interface Taxes {
     allIncluded: boolean;
 }
 export interface Name  {
+    content: string;
+}
+export interface Description  {
     content: string;
 }
 

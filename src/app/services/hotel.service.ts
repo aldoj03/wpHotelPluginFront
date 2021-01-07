@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Hotel } from '../model-response';
@@ -14,20 +14,24 @@ export class HotelService {
     private httpClient: HttpClient
   ) { }
 
-  getHotelDetails(id: number) {
-    const headers = new Headers({
-     
-    })
-    const endPoint = `${ this.url }/${ id }/details`;
+ 
 
-    return this.httpClient.get(endPoint);
-  }
-
- getHotels(){
-  const endPoint = this.url + 'hoteles'
+ getHotels(data = ''){
+  const endPoint = this.url + 'hoteles' + data
   console.log(endPoint);
   
   return this.httpClient.get<Array<Hotel>>(endPoint);
+
+ }
+
+ getHotelsFiltered(params){
+  const endPoint = this.url + 'hoteles/filtered'
+  console.log(endPoint);
+  let headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+  });
+let options = { headers: headers };
+  return this.httpClient.post<Array<Hotel>>(endPoint,params,options);
 
  }
 
