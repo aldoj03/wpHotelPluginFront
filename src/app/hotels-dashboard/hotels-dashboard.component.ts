@@ -25,7 +25,7 @@ export class HotelsDashboardComponent implements OnInit {
 
 
   ngOnInit(): void { 
-    const paramsUrl = '?countryCode=ES&destinationCode=MAD&fields=all&to=40'
+    const paramsUrl = '?countryCode=ES&destinationCode=MAD&fields=all'
     this.hotelService.getHotelsFiltered({'a':2}).subscribe(val =>{
       console.log(JSON.parse(val));
       this.hotels = JSON.parse(val).hotels.hotels
@@ -151,7 +151,7 @@ export class HotelsDashboardComponent implements OnInit {
 
       if (this.searchString.length > 3) {
 
-        if (hotel.name.content.toLowerCase().includes(filtersObject.string.toLowerCase())) {
+        if (hotel.name.toLowerCase().includes(filtersObject.string.toLowerCase())) {
 
           arrayLocal.push(hotel)
         }
@@ -207,7 +207,7 @@ export class HotelsDashboardComponent implements OnInit {
     }
 
     console.log(filtersObject);
-    const paramsUrl = '?countryCode=ES&destinationCode=MAD&fields=all&to=40'
+    const paramsUrl = '?countryCode=ES&destinationCode=MAD&fields=all'
     this.hotelService.getHotelsFiltered(filtersObject).subscribe(hotels=>{
       console.log((hotels));
       

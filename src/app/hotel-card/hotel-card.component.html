@@ -7,7 +7,7 @@
         <div class="hotel-details-container">
             <div class="hotel-info">
                 <div class="hotel-title-container">
-                    <h3>{{hotel.name.content}}</h3>
+                    <h3>{{hotel.name}}</h3>
                     <div class="stars-container">
                         <ng-container *ngFor="let star of starsNumber">
                             <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" role="img"
@@ -24,7 +24,7 @@
                     <span class="country-flag"></span>
                     <span>Ver en el mapa</span>
                 </div>
-                <p class="hotel-description">{{hotel.description.content}}</p>
+                <p class="hotel-description">{{hotel.description}}</p>
             </div>
             <div class="hotel-price">
                 <p>desde <span>{{pricePerDay| number:'1.0-0'}} €</span></p>

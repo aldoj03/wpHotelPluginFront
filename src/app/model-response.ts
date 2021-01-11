@@ -11658,7 +11658,7 @@ export interface Hotels {
 
 export interface Hotel {
     code?: number;
-    name?: Name;
+    name?: string;
     categoryCode?: string;
     categoryName?: string;
     destinationCode?: string;
@@ -11671,7 +11671,7 @@ export interface Hotel {
     minRate?: string;
     maxRate?: string;
     currency?: string;
-    description?: Description
+    description?: string
     ranking?: string
 }
 

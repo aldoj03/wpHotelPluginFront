@@ -31,7 +31,7 @@ export class HotelService {
     'Content-Type': 'application/json',
   });
 let options = { headers: headers };
-  return this.httpClient.post<Array<Hotel>>(endPoint,params,options);
+  return this.httpClient.post<Array<any>>(endPoint,params,options);
 
  }
 
