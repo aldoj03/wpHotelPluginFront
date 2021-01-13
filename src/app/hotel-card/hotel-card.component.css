@@ -34,11 +34,12 @@ header{
     margin: 8px 16px;
     border-right: 1px solid rgb(154, 173, 170);
     padding-right: 16px;
+    width: 80%;
 }
 
 .hotel-details-container{
     display: flex;
-    width: 78%;
+    width: 100%;
 }
 
 .hotel-info h3{
@@ -70,18 +71,19 @@ header{
 
  .hotel-price{
     color: var(--light-font);
-    width: 400px;
     flex-direction: column;
     display: flex;
     align-items: center;
+    text-align: center;
     justify-content: flex-start;
+    width: 20%;
  }
 
  .hotel-price p {
      margin-bottom: 0;
  }
  .hotel-price p span{
-
+    display: block;
     font-size: 40px;
 
  }
@@ -140,7 +142,7 @@ footer p{
         display: block;
     }
     .hotel-info{
-        width: 70%;
+        width: 80%;
     }
 }
 

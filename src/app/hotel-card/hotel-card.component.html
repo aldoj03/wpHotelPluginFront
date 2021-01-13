@@ -1,7 +1,7 @@
 <div class="hotel-card">
     <header>
         <div class="hotel-img-container">
-            <img src="https://tecnohotelnews.com/wp-content/uploads/2019/04/habitacion-gorka-room-mate.jpg" alt="">
+            <img  [src]="pathUrl" >
             <div class="hotel-img-score">Muy bueno <br> {{hotel.ranking }}/100</div>
         </div>
         <div class="hotel-details-container">
@@ -22,12 +22,12 @@
                 </div>
                 <div class="county">
                     <span class="country-flag"></span>
-                    <span>Ver en el mapa</span>
+                    <a [href]="urlMap" target="_blank">Ver en el mapa</a >
                 </div>
-                <p class="hotel-description">{{hotel.description}}</p>
+                <p class="hotel-description">{{hotel.description.content}}</p>
             </div>
             <div class="hotel-price">
-                <p>desde <span>{{pricePerDay| number:'1.0-0'}} €</span></p>
+                <p>desde <span >{{pricePerDay| number:'1.0-0'}} €</span></p>
                 <span>(x noche)</span>
             </div>
         </div>

@@ -11671,8 +11671,9 @@ export interface Hotel {
     minRate?: string;
     maxRate?: string;
     currency?: string;
-    description?: string
-    ranking?: string
+    description?: Description;
+    ranking?: string,
+    images?: any
 }
 
 

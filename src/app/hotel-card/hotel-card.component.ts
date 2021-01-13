@@ -9,10 +9,12 @@ import { HotelService } from '../services/hotel.service';
 })
 export class HotelCardComponent implements OnInit {
 
+  public pathUrl = 'http://photos.hotelbeds.com/giata/'
   public expandRoomsContent: boolean;
   public rooms: Array<Room>;
   public daysToBook: number;
   public pricePerDay: number;
+  public urlMap: string;
   public starsNumber: Array<any> = [];
   @Input() hotel: Hotel;
   @Input() checkDays: any;
@@ -26,8 +28,10 @@ export class HotelCardComponent implements OnInit {
   ngOnInit(): void {
     // this.hotelService.getHotelDetails(this.hotel.code).subscribe(val => console.log(val))
     this.rooms = this.hotel.rooms;
+    this.pathUrl += this.hotel.images.path 
     this.daysToBook = this.hotelService.calDayToBook(this.checkDays.checkIn,this.checkDays.checkOut)
     this.pricePerDay = Number(this.hotel.minRate) / this.daysToBook
+    this.urlMap = `https://maps.google.com/?q=${this.hotel.latitude},${this.hotel.longitude}`
 
     this.getStars()
   }

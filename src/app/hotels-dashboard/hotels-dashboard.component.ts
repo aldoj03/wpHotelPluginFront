@@ -15,22 +15,29 @@ export class HotelsDashboardComponent implements OnInit {
   public pricesFilter: Array<string>;
   public categoriesFilter: Array<any>;
   public searchString: string = '';
-
+  public total;
   constructor(
     private hotelService: HotelService
   ) {
     this.pricesFilter = []
     this.categoriesFilter = []
+    this.total = 0
   }
 
 
   ngOnInit(): void { 
     const paramsUrl = '?countryCode=ES&destinationCode=MAD&fields=all'
     this.hotelService.getHotelsFiltered({'a':2}).subscribe(val =>{
-      console.log(JSON.parse(val));
-      this.hotels = JSON.parse(val).hotels.hotels
+      console.log(val);
+      this.hotels = val['hotels']
+      this.total = val['checkDays'].total
       this.hotelsFiltered = [...this.hotels]
       console.log(this.hotels);
+      this.checkDays = {
+        checkIn: val['checkDays'].checkIn,
+        checkOut: val['checkDays'].checkOut
+      }
+      
     }
     )
     // this.hotels = json.hotels
@@ -48,18 +55,18 @@ export class HotelsDashboardComponent implements OnInit {
 
   filterHotels() {
 
-    // this.hotelsFiltered = this.filterPrice()
+    this.hotelsFiltered = this.filterPrice()
     // console.log(this.hotelsFiltered);
 
-    // this.hotelsFiltered = this.filterCategory()
+    this.hotelsFiltered = this.filterCategory()
     // console.log(this.hotelsFiltered);
 
-    // this.hotelsFiltered = this.filterSeachString()
+    this.hotelsFiltered = this.filterSeachString()
     // console.log(this.hotelsFiltered);
 
     // this.hotelsFiltered = this.filterGlobal()
 
-    this.getFilteredHotels()
+    // this.getFilteredHotels()
 
 
   }
@@ -80,10 +87,10 @@ export class HotelsDashboardComponent implements OnInit {
       const hotelRate = Number(hotel.minRate)
       const days = this.hotelService.calDayToBook(this.checkDays.checkIn, this.checkDays.checkOut)
       const pricePerDay = hotelRate / days
-
+      
       params.forEach(val => {
-
-        if (hotelRate >= val.min && pricePerDay <= val.max) hotelsFiltered.push(hotel)
+        
+        if (pricePerDay >= val.min && pricePerDay <= val.max) hotelsFiltered.push(hotel)
 
       })
     })
@@ -112,7 +119,7 @@ export class HotelsDashboardComponent implements OnInit {
     console.log(this.searchString);
 
     if (this.searchString.length < 3) return this.hotelsFiltered
-    let arrayLocal = this.hotelsFiltered.filter(hotel => hotel.name.content.toLowerCase().includes(this.searchString.toLowerCase()));
+    let arrayLocal = this.hotelsFiltered.filter(hotel => hotel.name.toLowerCase().includes(this.searchString.toLowerCase()));
 
     return [...arrayLocal]
   }
@@ -170,7 +177,6 @@ export class HotelsDashboardComponent implements OnInit {
       }
 
       if (!flagAdded && filtersObject.price.length > 0) {
-        alert('a')
         const hotelRate = Number(hotel.minRate)
         const pricePerDay = hotelRate / days
 
@@ -213,4 +219,6 @@ export class HotelsDashboardComponent implements OnInit {
       
     })
   }
+
+ 
 }
