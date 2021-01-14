@@ -16,8 +16,8 @@ export class HotelService {
 
  
 
- getHotels(data = ''){
-  const endPoint = this.url + 'hoteles' + data
+ getHotels(id:string){
+  const endPoint = `${this.url}hoteles?id=${id}`; 
   console.log(endPoint);
   
   return this.httpClient.get<Array<Hotel>>(endPoint);

@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HotelsDashboardComponent } from './hotels-dashboard/hotels-dashboard.component';
 
 const routes: Routes = [
-  { path: '', loadChildren: () => import('./hotels-dashboard/hotels-dahsboard.module').then(m => m.HotelsDahsboardModule) }
+  { path: 'index.php', loadChildren: () => import('./hotels-dashboard/hotels-dahsboard.module').then(m => m.HotelsDahsboardModule), pathMatch: 'full' }
 ];
 
 @NgModule({

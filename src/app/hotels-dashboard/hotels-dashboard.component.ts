@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Hotel, json } from '../model-response'
 import { HotelService } from '../services/hotel.service';
 @Component({
@@ -17,34 +18,34 @@ export class HotelsDashboardComponent implements OnInit {
   public searchString: string = '';
   public total;
   constructor(
-    private hotelService: HotelService
+    private hotelService: HotelService,
+    private route: ActivatedRoute
   ) {
     this.pricesFilter = []
     this.categoriesFilter = []
     this.total = 0
   }
-
-
+  
+  
   ngOnInit(): void { 
-    const paramsUrl = '?countryCode=ES&destinationCode=MAD&fields=all'
-    this.hotelService.getHotelsFiltered({'a':2}).subscribe(val =>{
-      console.log(val);
-      this.hotels = val['hotels']
-      this.total = val['checkDays'].total
-      this.hotelsFiltered = [...this.hotels]
-      console.log(this.hotels);
-      this.checkDays = {
-        checkIn: val['checkDays'].checkIn,
-        checkOut: val['checkDays'].checkOut
-      }
-      
-    }
-    )
-    // this.hotels = json.hotels
-    this.checkDays = {
-      checkIn: json.checkIn,
-      checkOut: json.checkOut
-    }
+  
+      const id = window.location.hash.replace('#','');
+      console.log(id);
+      this.hotelService.getHotels(id).subscribe(val =>{
+        console.log(val);
+        this.hotels = val['hotels']
+        this.total = val['checkDays'].total
+        this.hotelsFiltered = [...this.hotels]
+        // console.log(this.hotels);
+        this.checkDays = {
+          checkIn: val['checkDays'].checkIn,
+          checkOut: val['checkDays'].checkOut
+        }
+        
+      })
+  ;
+
+  
 
   }
 
