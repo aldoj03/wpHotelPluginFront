@@ -1,0 +1,42 @@
+.pagination_container{
+    display: flex;
+    margin: auto;
+    padding: 0;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.pagination_container li{
+    font-size: 20px;
+    color: var(--blue);
+    padding: 8px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 8px;
+    font-weight: bold;
+    transition: 300ms;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.pagination_container li:hover{
+    background: #efefef;
+}
+.pagination_container li.active{
+
+    background: var(--gold);
+    color: white;
+
+}
+.pagination_container li.flecha{
+    border: none;
+}
+.pagination_container li.hidden{
+    visibility: hidden;
+}
+
+.pagination_container li svg{
+    width: 15px;
+    transition: 300ms;
+    fill: var(--blue)
+}

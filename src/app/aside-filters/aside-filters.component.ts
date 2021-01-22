@@ -10,10 +10,13 @@ export class AsideFiltersComponent implements OnInit {
   public toggled: boolean = false;
   @Input() pricesFilter: Array<any>;
   @Input() categoriesFilter;
+  @Input() regimenFilters;
   @Output() sendFilter = new EventEmitter();
   @Output() setSearchString = new EventEmitter();
+  @Output() setPointFilter = new EventEmitter();
   public pricesFilterModel;
   public categoriesFilterModel;
+  public regimenFilterModel;
   public point: number = null;
 
   constructor() {
@@ -84,11 +87,6 @@ export class AsideFiltersComponent implements OnInit {
 
       },
       {
-        value: 'BB',
-        text: 'Bed and breakfast'
-
-      },
-      {
         value: 'BOU',
         text: 'Boutique'
 
@@ -97,6 +95,33 @@ export class AsideFiltersComponent implements OnInit {
         value: 'otros',
         text: 'Otros'
 
+      },
+    ]
+
+    this.regimenFilterModel = [
+      {
+        value: 'RO',
+        text: 'Solo alojamiento'
+      },
+      {
+        value: 'SC',
+        text: 'Alojamiento con cocina'
+      },
+      {
+        value: 'BB',
+        text: 'Desayuno'
+      },
+      {
+        value: 'HB',
+        text: 'Media pension'
+      },
+      {
+        value: 'FB',
+        text: 'Pension completa'
+      },
+      {
+        value: 'AI',
+        text: 'Todo incluido'
       },
     ]
 
@@ -113,6 +138,7 @@ export class AsideFiltersComponent implements OnInit {
 
   setPoint(point: number) {
     this.point = point
+    this.setPointFilter.emit(this.point)
   }
 
   searchByName(value: string) {
@@ -128,6 +154,8 @@ export class AsideFiltersComponent implements OnInit {
     const array = this.rellenarFiltersArrayValues(valInput, this.pricesFilter)
 
     this.pricesFilter = array
+    console.log(array);
+    
     this.executeFilter()
 
   }
@@ -141,6 +169,14 @@ export class AsideFiltersComponent implements OnInit {
 
     this.executeFilter()
 
+  }
+
+  setRegimenValue(valInput){
+    const array = this.rellenarFiltersArrayValues(valInput, this.regimenFilters)
+
+    this.regimenFilters = array
+
+    this.executeFilter()
   }
 
 

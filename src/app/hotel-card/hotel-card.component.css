@@ -8,9 +8,8 @@ header{
 
 .hotel-img-container{
     position: relative;
-    width: 30%;
-    max-width: 200px;
-    height: 130px;
+    width: 25%;
+    height: 165px;
 }
 
 .hotel-img-container img{
@@ -39,7 +38,7 @@ header{
 
 .hotel-details-container{
     display: flex;
-    width: 100%;
+    width: 75%;
 }
 
 .hotel-info h3{
@@ -119,6 +118,10 @@ footer p{
     cursor: pointer;
 }
 
+.shortDesc{
+    max-height: 105px;
+}
+
 @media(max-width:800px){
     .hotel-details-container{
         width: 100%;
@@ -174,3 +177,4 @@ footer p{
     }
   
 }
+

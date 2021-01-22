@@ -9,18 +9,32 @@ import { Hotel } from '../model-response';
 export class HotelService {
 
   private url: string = environment.apiUrlLocal
+  public pagination:number = 1; 
 
   constructor(
     private httpClient: HttpClient
   ) { }
 
  
+ public set setPagination(v : number) {
+   this.pagination = v;
+ }
+ 
 
- getHotels(id:string){
-  const endPoint = `${this.url}hoteles?id=${id}`; 
+ 
+ public get getPagination() : number {
+   return  this.pagination
+ }
+ 
+
+ getHotels(id:string, page:number){
+  const endPoint = `${this.url}hoteles?id=${id}&page=${page}`; 
   console.log(endPoint);
+  const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+  });
   
-  return this.httpClient.get<Array<Hotel>>(endPoint);
+  return this.httpClient.get<any>(endPoint,{headers});
 
  }
 

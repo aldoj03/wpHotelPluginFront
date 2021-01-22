@@ -37,7 +37,6 @@ export class HotelsOrderComponent implements OnInit {
 
   setOrder(item){
     this.filterActive = item
-    console.log(item);
     if(item == 1){
       this.hotels = this.hotels.sort(function(a, b) {
         return Number(a.minRate) - Number(b.minRate);

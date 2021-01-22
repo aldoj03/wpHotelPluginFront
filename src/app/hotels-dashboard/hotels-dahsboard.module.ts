@@ -8,20 +8,22 @@ import { HotelsOrderComponent } from '../hotels-order/hotels-order.component';
 import { HotelCardComponent } from '../hotel-card/hotel-card.component';
 import { HotelRoomComponent } from '../hotel-room/hotel-room.component';
 import { OfferComponent } from '../offer/offer.component';
+import { PaginationComponent } from '../pagination/pagination.component';
 
 
 @NgModule({
   declarations: [
     HotelsDashboardComponent,
-     AsideFiltersComponent, 
-     HotelsOrderComponent, 
-     HotelCardComponent,
+    AsideFiltersComponent,
+    HotelsOrderComponent,
+    HotelCardComponent,
     HotelRoomComponent,
-  OfferComponent],
-     
+    OfferComponent,
+    PaginationComponent,
+  ],
   imports: [
     CommonModule,
-    HotelsDahsboardRoutingModule
+    HotelsDahsboardRoutingModule,
   ]
 })
 export class HotelsDahsboardModule { }

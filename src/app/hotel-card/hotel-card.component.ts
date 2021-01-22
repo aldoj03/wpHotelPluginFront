@@ -16,17 +16,23 @@ export class HotelCardComponent implements OnInit {
   public pricePerDay: number;
   public urlMap: string;
   public starsNumber: Array<any> = [];
+  public rank: number;
+  public shortDesc: boolean;
+  public show: boolean;
   @Input() hotel: Hotel;
   @Input() checkDays: any;
+  @Input() regimenFilters: any;
 
   constructor(
     private hotelService: HotelService
   ) {
     this.expandRoomsContent = false
+    this.shortDesc = true
   }
 
   ngOnInit(): void {
-    // this.hotelService.getHotelDetails(this.hotel.code).subscribe(val => console.log(val))
+    const ranking  = Math.floor(this.hotel.ranking / 10) 
+    this.rank = ranking == 0 ? 1 : ranking
     this.rooms = this.hotel.rooms;
     this.pathUrl += this.hotel.images.path 
     this.daysToBook = this.hotelService.calDayToBook(this.checkDays.checkIn,this.checkDays.checkOut)

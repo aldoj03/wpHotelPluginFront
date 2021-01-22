@@ -45,50 +45,15 @@
     </div>
     <div class="filter">
         <h3>Régimen</h3>
-        <div class="check-container">
-            <label class="container " name="regimen">Solo alojamiento
-                <input type="checkbox">
+        <div class="check-container" *ngFor="let regimen of regimenFilterModel">
+            <label class="container " >{{regimen.text}}
+                <input type="checkbox" name="regimen-{{i}}" 
+                (change)="setRegimenValue(regimen.value)">                 
                 <span class="checkmark"></span>
             </label>
             <span></span>
         </div>
-        <div class="check-container">
-            <label class="container " name="regimen">Alojamiento con coina
-                <input type="checkbox">
-                <span class="checkmark"></span>
-            </label>
-            <span></span>
-        </div>
-        <div class="check-container">
-            <label class="container " name="regimen">Desayuno
-                <input type="checkbox">
-                <span class="checkmark"></span>
-            </label>
-            <span></span>
-        </div>
-        <div class="check-container">
-            <label class="container " name="regimen">Media pensión
-                <input type="checkbox">
-                <span class="checkmark"></span>
-            </label>
-            <span></span>
-        </div>
-
-        <div class="check-container">
-            <label class="container " name="regimen">Pensión completa
-                <input type="checkbox">
-                <span class="checkmark"></span>
-            </label>
-            <span></span>
-        </div>
-
-        <div class="check-container">
-            <label class="container " name="regimen">Todo incluido
-                <input type="checkbox">
-                <span class="checkmark"></span>
-            </label>
-            <span></span>
-        </div>
+      
     </div>
     <div class="filter">
         <h3>Hotel</h3>

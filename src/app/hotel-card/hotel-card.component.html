@@ -2,7 +2,7 @@
     <header>
         <div class="hotel-img-container">
             <img  [src]="pathUrl" >
-            <div class="hotel-img-score">Muy bueno <br> {{hotel.ranking }}/100</div>
+            <div class="hotel-img-score">Muy bueno <br> {{rank  }}/10</div>
         </div>
         <div class="hotel-details-container">
             <div class="hotel-info">
@@ -24,7 +24,8 @@
                     <span class="country-flag"></span>
                     <a [href]="urlMap" target="_blank">Ver en el mapa</a >
                 </div>
-                <p class="hotel-description">{{hotel.description.content}}</p>
+                <p [class.shortDesc]="shortDesc" class="hotel-description">{{hotel.description.content}} 
+                    <button (click)="shortDesc = !shortDesc" *ngIf="hotel.description.content.length > 940">Leer más</button></p>
             </div>
             <div class="hotel-price">
                 <p>desde <span >{{pricePerDay| number:'1.0-0'}} €</span></p>
@@ -41,7 +42,10 @@
     </div>
     <div class="roms-container">
         <ng-container *ngFor="let room of rooms; let i = index">
-            <app-hotel-room [daysToBook]="daysToBook" *ngIf="i == 0 || expandRoomsContent " [room]="room"></app-hotel-room>
+            <app-hotel-room 
+            [regimenFilters] = "regimenFilters"
+            [daysToBook]="daysToBook" 
+            *ngIf="i == 0 || expandRoomsContent " [room]="room"></app-hotel-room>
         </ng-container>
     </div>
     <footer>

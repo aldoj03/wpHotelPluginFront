@@ -1,15 +1,30 @@
-<div class="container">
+<div class="container" >
     <div class="aside-filters">
-        <app-aside-filters [pricesFilter]="pricesFilter" [categoriesFilter]="categoriesFilter"
-            (setSearchString)="setSearchString($event)  " (sendFilter)="filterHotels()"></app-aside-filters>
+        <app-aside-filters 
+        [pricesFilter]="pricesFilter" 
+        [categoriesFilter]="categoriesFilter"
+        [pricesFilter]="pricesFilter"
+        [regimenFilters]="regimenFilters"
+        (setPointFilter)="setPointFilter($event)"
+        (setSearchString)="setSearchString($event)  " 
+        (sendFilter)="filterHotels()"
+            ></app-aside-filters>
     </div>
     <div class="hotels-results">
         <app-hotels-order *ngIf="hotels;else spiner" [total]="total" 
         [hotels]="hotelsFiltered"></app-hotels-order>
-        <ng-container *ngIf="hotels;else spiner">
+        <ng-container *ngIf="!loading;else spiner">
             <ng-container *ngFor="let hotel of hotelsFiltered; trackBy:identify">
-                <app-hotel-card [checkDays]="checkDays" [hotel]="hotel"></app-hotel-card>
+                <app-hotel-card   
+                [regimenFilters]="regimenFilters" 
+                *ngIf="hotel.ranking / 10  >= pointsFilter"
+                 [checkDays]="checkDays" 
+                 [hotel]="hotel"></app-hotel-card>
             </ng-container>
+            <app-pagination
+             *ngIf="total" 
+            [total]="total"
+            (getNewPage)="getNewPage($event)"></app-pagination>
         </ng-container>
     </div>
     <ng-template #spiner>

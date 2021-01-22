@@ -6,11 +6,19 @@
 }
 
 .aside-filters{
-    /* width: 230px; */
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    padding-right: 5px;
+    overflow: auto;
+    z-index: 10;
+
 }
 .hotels-results{
     flex: 1;
     padding: 30px 0px 30px 30px;
+    margin-left: 250px;
 }
 .spinner{
     position: fixed;
@@ -41,5 +49,6 @@
     .hotels-results{
         width: auto;
         padding: 30px 8px 30px 8px;
+        margin: 0;
     }
 }

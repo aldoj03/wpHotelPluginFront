@@ -3,6 +3,7 @@ aside{
     width: 250px;
     background: white;
     padding: 10px;
+    height: 100%;
 }
 .filter{
     margin-bottom: 40px;

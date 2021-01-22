@@ -11672,7 +11672,7 @@ export interface Hotel {
     maxRate?: string;
     currency?: string;
     description?: Description;
-    ranking?: string,
+    ranking?: number,
     images?: any
 }
 

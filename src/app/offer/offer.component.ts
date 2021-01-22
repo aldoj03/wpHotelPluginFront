@@ -11,15 +11,53 @@ export class OfferComponent implements OnInit {
 
   @Input() rate:Rate;
   @Input() daysToBook:number;
+  @Input() regimenFilters:Array<string>;
 
   public offer:any;
   public pricePerDay:number;
   public princeWhithOffer:number;
+  public regimenFilterModel;
 
-  constructor() { }
+  constructor() {
+    this.regimenFilterModel = [
+      {
+        value: 'RO',
+        text: 'Solo alojamiento'
+      },
+      {
+        value: 'SC',
+        text: 'Alojamiento con cocina'
+      },
+      {
+        value: 'BB',
+        text: 'Desayuno'
+      },
+      {
+        value: 'HB',
+        text: 'Media pension'
+      },
+      {
+        value: 'FB',
+        text: 'Pension completa'
+      },
+      {
+        value: 'AI',
+        text: 'Todo incluido'
+      },
+      {
+        value: 'CB',
+        text: 'Desayuno continental'
+      },
+    ]
+   }
 
   ngOnInit(): void {
     this.initValues()
+    this.regimenFilterModel.forEach(val=>{
+      if(val.value == this.rate.boardCode){
+        this.rate.boardName = val.text
+      }
+    })
   }
   
   initValues(){
