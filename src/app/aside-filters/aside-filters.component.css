@@ -205,7 +205,8 @@ aside{
         transition: 300ms;
         z-index: 10;
         position: fixed;
-        height: 100vh;
+        height: 100%;
+
         overflow: auto;
     }
     aside.toggled{

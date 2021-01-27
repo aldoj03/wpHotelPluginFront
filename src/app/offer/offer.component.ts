@@ -70,6 +70,8 @@ export class OfferComponent implements OnInit {
 
   }
 
-  
+  a(){
+    document.location.href = 'https://www.google.co.ve/'
+  }
 
 }
