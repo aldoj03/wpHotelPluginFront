@@ -56,5 +56,8 @@ export class HotelCardComponent implements OnInit {
     }
   }
 
+  goHotelDetail(){
+    
+  }
   
 }

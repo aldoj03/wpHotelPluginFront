@@ -11,24 +11,26 @@
             ></app-aside-filters>
     </div>
     <div class="hotels-results">
-        <app-hotels-order *ngIf="hotels;else spiner" [total]="total" 
+        <app-hotels-order *ngIf="hotels" [total]="total" 
         [hotels]="hotelsFiltered"></app-hotels-order>
-        <ng-container *ngIf="!loading;else spiner">
-            <ng-container *ngFor="let hotel of hotelsFiltered; trackBy:identify">
-                <app-hotel-card   
-                [regimenFilters]="regimenFilters" 
-                *ngIf="hotel.ranking / 10  >= pointsFilter"
-                 [checkDays]="checkDays" 
-                 [hotel]="hotel"></app-hotel-card>
+        <ng-container *ngIf="!loading">
+            <ng-container *ngIf="hotelsFiltered.length > 0">
+                <ng-container *ngFor="let hotel of hotelsFiltered; trackBy:identify">
+                    <app-hotel-card   
+                    [regimenFilters]="regimenFilters" 
+                    *ngIf="hotel.ranking / 10  >= pointsFilter"
+                     [checkDays]="checkDays" 
+                     [hotel]="hotel"></app-hotel-card>
+                </ng-container>
+                <app-pagination
+                 *ngIf="total" 
+                [total]="total"
+                (getNewPage)="getNewPage($event)"></app-pagination>
             </ng-container>
-            <app-pagination
-             *ngIf="total" 
-            [total]="total"
-            (getNewPage)="getNewPage($event)"></app-pagination>
+            <ng-container *ngIf="hotelsFiltered.length <= 0">
+                <h2 class="no-results">No hay resultados</h2>
+            </ng-container>
         </ng-container>
     </div>
-    <ng-template #spiner>
-        <div class="spinner"></div>
-    </ng-template>
-
+        <div *ngIf="loading" class="spinner"></div>
 </div>

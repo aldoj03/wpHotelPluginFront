@@ -7,7 +7,7 @@
         <div class="hotel-details-container">
             <div class="hotel-info">
                 <div class="hotel-title-container">
-                    <h3>{{hotel.name}}</h3>
+                    <h3><a [routerLink]="['./hotel']" [queryParams]="{ id: hotel.code}">{{hotel.name}}</a></h3>
                     <div class="stars-container">
                         <ng-container *ngFor="let star of starsNumber">
                             <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" role="img"

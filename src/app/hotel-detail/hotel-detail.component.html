@@ -1,0 +1,47 @@
+<ng-container *ngIf="hotel;else spinner">
+
+    <div class="main-content">
+        <header>
+            <h2>{{hotel.name.content}}</h2>
+            <p>{{hotel.address.content}}, {{hotel.city.content}}, {{hotel.state.name}}
+                ({{hotel.country.description.content}})</p>
+        </header>
+        <div class="hotel-detail">
+            <div class="images-container">
+                <ng-container *ngIf="imagesArray">
+                    <div *ngFor="let src; of imagesArray">
+                        <img [src]="src" alt="">
+                    </div>
+                </ng-container>
+            </div>
+            <div class="data-content">
+                <div class="calification_container">{{hotel.ranking / 10}}</div>
+                <div class="map_container">Mapa</div>
+                <div class="reserva_container">
+                    <p>Habitaciones desde</p>
+                    <p>12$ por noche</p>
+                    <button>¡RESERVAR AHORA!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="gray-back">
+        <div class="dispobility-container">
+            <span>Disponibilidad</span>
+            <span class="calendar"></span>
+        </div>
+        <div class="rooms-information">
+
+        </div>
+        <div class="hotel-information">
+            <div class="hotel-description">
+                <h2>{{hotel.name.content}}</h2>
+                {{hotel.description.content}}
+            </div>
+        </div>
+
+    </div>
+</ng-container>
+<ng-template #spinner>
+    <div class="spinner"></div>
+</ng-template>

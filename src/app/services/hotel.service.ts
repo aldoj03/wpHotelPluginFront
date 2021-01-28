@@ -38,6 +38,17 @@ export class HotelService {
 
  }
 
+ getSingleHotel(id:string){
+  const endPoint = `${this.url}hotel?id=${id}`; 
+  console.log(endPoint);
+  const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+  });
+  
+  return this.httpClient.get<any>(endPoint,{headers});
+
+ }
+
  getHotelsFiltered(params){
   const endPoint = this.url + 'hoteles/filtered'
   console.log(endPoint);

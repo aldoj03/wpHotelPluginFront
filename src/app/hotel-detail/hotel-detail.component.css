@@ -1,0 +1,105 @@
+
+header{
+    padding: 20px 20px;
+    color: rgb(63, 63, 63);
+}
+.hotel-detail{
+    display: flex;
+    margin-left: 30px;
+    align-items: center;
+    overflow: hidden;
+}
+.images-container{
+    display: flex;
+    width: 50%;
+    max-height: 500px;
+    overflow: auto;
+}
+
+.images-container > div{
+    
+    width: 300px;
+    height: 250px;
+    min-width: 300px;
+    padding: 6px;
+}
+.images-container > div img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 6px;
+
+}
+.reserva_container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 20px;
+}
+.reserva_container button{
+background: #05528f;
+color: white;
+border: none;
+font-size: 20px;
+padding: 20px 60px;
+cursor: pointer;
+transition: 300ms ;
+}
+.reserva_container button:hover{
+background: #0a5ca0;
+
+}
+.data-content{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0px 16px;
+    width: 50%;
+}
+
+.map_container,.calification_container{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
+
+.gray-back{
+    background: rgb(245 245 245);
+    margin-top: 30px;
+}
+
+.hotel-description{
+    background: white;
+    width: 80%;
+    padding: 30px;
+    margin: auto;
+}
+
+.hotel-description h2{
+    position: relative;
+    color: rgb(63, 63, 63);
+    margin-bottom: 30px;
+
+}
+.hotel-description h2::before{
+    position: absolute;
+    content: ' ';
+    bottom: -12px;
+    width: 100%;
+    height: 2px;
+    background: rgb(245 245 245);
+    left: 0;
+}
+.hotel-information{
+    padding: 30px;
+    color: rgb(63, 63, 63);
+
+}
+
+.main-content{
+    padding: 0 70px;
+}
