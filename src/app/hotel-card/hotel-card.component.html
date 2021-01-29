@@ -65,6 +65,6 @@
     </footer>
 </div>
 <ng-container *ngIf="toggleShowMap">
-    <app-map [center]="center" [markers]="[center]" (setShowMap)="showMap($event)"></app-map>
+    <app-map [center]="center" [markers]="[{cords:center,text:pricePerDay}]" (setShowMap)="showMap($event)"></app-map>
     <div class="mask"></div>
 </ng-container>
