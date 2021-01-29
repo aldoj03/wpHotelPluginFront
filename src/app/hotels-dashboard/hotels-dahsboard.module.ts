@@ -9,6 +9,7 @@ import { HotelCardComponent } from '../hotel-card/hotel-card.component';
 import { HotelRoomComponent } from '../hotel-room/hotel-room.component';
 import { OfferComponent } from '../offer/offer.component';
 import { PaginationComponent } from '../pagination/pagination.component';
+import { SharedModule } from '../shared/shared/shared.module';
 
 
 @NgModule({
@@ -17,13 +18,12 @@ import { PaginationComponent } from '../pagination/pagination.component';
     AsideFiltersComponent,
     HotelsOrderComponent,
     HotelCardComponent,
-    HotelRoomComponent,
-    OfferComponent,
     PaginationComponent,
   ],
   imports: [
     CommonModule,
     HotelsDahsboardRoutingModule,
+    SharedModule
   ]
 })
 export class HotelsDahsboardModule { }

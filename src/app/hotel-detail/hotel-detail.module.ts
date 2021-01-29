@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { HotelDetailRoutingModule } from './hotel-detail-routing.module';
 import { HotelDetailComponent } from './hotel-detail.component';
+import { SharedModule } from '../shared/shared/shared.module';
 
 
 @NgModule({
@@ -10,6 +11,7 @@ import { HotelDetailComponent } from './hotel-detail.component';
   imports: [
     CommonModule,
     HotelDetailRoutingModule,
+    SharedModule
   ]
 })
 export class HotelDetailModule { }

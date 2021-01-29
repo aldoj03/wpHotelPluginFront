@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { tick } from '@angular/core/testing';
 import { Rate } from '../model-response';
+import  Swal  from 'sweetalert2/dist/sweetalert2.js'
 
 @Component({
   selector: 'app-offer',
@@ -70,8 +70,28 @@ export class OfferComponent implements OnInit {
 
   }
 
-  a(){
-    document.location.href = 'https://www.google.co.ve/'
+  procesarReserva() {
+    let timerInterval
+    Swal.fire({
+      title: 'Procesando reserva!',
+      html: 'Espere un momento.',
+      timer: 6000,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading()
+        timerInterval = setInterval(() => {
+          const content = Swal.getContent()
+          
+        }, 100)
+      },
+      willClose: () => {
+        clearInterval(timerInterval)
+      }
+    }).then((result) => {
+      /* Read more about handling dismissals below */
+      if (result.dismiss === Swal.DismissReason.timer) {
+      }
+    })
   }
 
 }

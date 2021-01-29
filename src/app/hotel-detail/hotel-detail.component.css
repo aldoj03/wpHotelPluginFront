@@ -40,16 +40,18 @@ header{
     font-size: 20px;
 }
 .reserva_container button{
-background: #05528f;
+background: #f8b018;
 color: white;
 border: none;
 font-size: 20px;
 padding: 20px 60px;
 cursor: pointer;
 transition: 300ms ;
+border-radius: 4px;
+box-shadow: 0px 6px 14px -5px #f8b118d0;
 }
 .reserva_container button:hover{
-background: #0a5ca0;
+transform: translateY(-8px);
 
 }
 .data-content{
@@ -70,13 +72,15 @@ background: #0a5ca0;
 .gray-back{
     background: rgb(245 245 245);
     margin-top: 30px;
+    padding: 30px 100px;
 }
 
 .hotel-description{
     background: white;
-    width: 80%;
-    padding: 30px;
     margin: auto;
+    padding: 30px;
+    box-shadow: 0px 0px 28px 0px #8080804a;
+
 }
 
 .hotel-description h2{
@@ -95,11 +99,24 @@ background: #0a5ca0;
     left: 0;
 }
 .hotel-information{
-    padding: 30px;
     color: rgb(63, 63, 63);
-
+    margin-top: 30px;
 }
 
 .main-content{
     padding: 0 70px;
+}
+
+.dispobility-container{
+    background: white;
+    border: 2px solid var(--gold);
+    padding: 25px 30px;
+    margin: 30px 0;
+    box-shadow: 0px 0px 19px 0px #8080804a;
+
+}
+.rooms-information > div {
+    background: white;
+    margin-top: 15px;
+    box-shadow: 0px 0px 19px 0px #8080804a;
 }

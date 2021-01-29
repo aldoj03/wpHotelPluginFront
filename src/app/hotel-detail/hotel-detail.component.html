@@ -1,4 +1,4 @@
-<ng-container *ngIf="hotel;else spinner">
+<ng-container *ngIf="!loading;else spinner">
 
     <div class="main-content">
         <header>
@@ -19,8 +19,8 @@
                 <div class="map_container">Mapa</div>
                 <div class="reserva_container">
                     <p>Habitaciones desde</p>
-                    <p>12$ por noche</p>
-                    <button>¡RESERVAR AHORA!</button>
+                    <p>{{pricePerDay| number:'1.0-0'}} € por noche</p>
+                    <button (click)="procesarReserva()">¡RESERVAR AHORA!</button>
                 </div>
             </div>
         </div>
@@ -28,10 +28,26 @@
     <div class="gray-back">
         <div class="dispobility-container">
             <span>Disponibilidad</span>
-            <span class="calendar"></span>
+            <span class="calendar">
+                <span>Desde: {{checkInData.checkInData.checkIn}} </span>
+                <span>Hasta: {{checkInData.checkInData.checkOut}} </span>
+                <span>({{daysToBook}} noches)</span>
+            </span>
+            <span>
+                <span>Adultos: {{checkInData.checkInData.adultos}}</span>
+                <span>Adultos: {{checkInData.checkInData.ninos}}</span>
+                <span>habitaciones: {{checkInData.checkInData.hab}}</span>
+            </span>
         </div>
         <div class="rooms-information">
 
+            <ng-container *ngFor="let room of rooms; let i = index">
+                <div>
+                    <app-hotel-room 
+                    [daysToBook]="daysToBook" 
+                    [room]="room"></app-hotel-room>
+                </div>
+            </ng-container>
         </div>
         <div class="hotel-information">
             <div class="hotel-description">

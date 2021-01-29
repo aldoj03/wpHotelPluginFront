@@ -48,6 +48,16 @@ export class HotelService {
   return this.httpClient.get<any>(endPoint,{headers});
 
  }
+ getSingleHotelRooms(object){
+  const endPoint = `${this.url}hotel/rooms`; 
+  console.log(endPoint);
+  const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+  });
+  
+  return this.httpClient.post<any>(endPoint,object,{headers});
+
+ }
 
  getHotelsFiltered(params){
   const endPoint = this.url + 'hoteles/filtered'

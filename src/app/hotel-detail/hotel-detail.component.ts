@@ -1,41 +1,101 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HotelService } from '../services/hotel.service';
+import { switchMap } from 'rxjs/operators/';
+import { Room } from '../model-response';
+import  Swal  from 'sweetalert2/dist/sweetalert2.js'
+import {  Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-hotel-detail',
   templateUrl: './hotel-detail.component.html',
   styleUrls: ['./hotel-detail.component.css']
 })
-export class HotelDetailComponent implements OnInit {
+export class HotelDetailComponent implements OnInit, OnDestroy {
 
   public hotelID
+  public subscription:Subscription
   public hotel
   public hotelImages = []
   public imagesArray = []
+  public checkInData
+  public loading = true
+  public rooms: Array<Room> = []
+  public daysToBook
+  public pricePerDay
 
   constructor(
     private route: ActivatedRoute,
     private hotelService: HotelService
-  ) { 
-    this.route.queryParams.subscribe(params => {
+  ) {
+
+    this.subscription = this.route.queryParams.pipe(switchMap(params => {
       this.hotelID = params['id'];
-      this.hotelService.getSingleHotel(this.hotelID)
-      .subscribe(val=>{
-        if(val){
+      const checkInData = JSON.parse(window.localStorage.getItem('checkInData'))
+      this.checkInData = {
+        hotelCode: this.hotelID,
+        checkInData
+      }
+      this.daysToBook = this.hotelService.calDayToBook(this.checkInData.checkInData.checkIn, this.checkInData.checkInData.checkOut)
+      return this.hotelService.getSingleHotel(this.hotelID)
+    }),
+      switchMap(val => {
+        if (val) {
           console.log(JSON.parse(val))
           this.hotel = JSON.parse(val).hotel
           this.initHotelImages()
+          return this.hotelService.getSingleHotelRooms(this.checkInData)
+        }
+      })).subscribe(val2 => {
+        if (val2) {
+          const data = JSON.parse(val2)
+          console.log(data)
+          this.initHotelRooms(data.hotels.hotels[0])
+        }
+      });
+    }
+    
+    ngOnInit(): void {
+    }
+    
+    initHotelImages() {
+      this.imagesArray = this.hotel.images.map(val => 'http://photos.hotelbeds.com/giata/bigger/' + val.path)
+    }
+    
+    procesarReserva() {
+      let timerInterval
+      Swal.fire({
+        title: 'Procesando reserva!',
+        html: 'Espere un momento.',
+        timer: 6000,
+        timerProgressBar: true,
+        didOpen: () => {
+          Swal.showLoading()
+          timerInterval = setInterval(() => {
+            const content = Swal.getContent()
+            
+          }, 100)
+        },
+        willClose: () => {
+          clearInterval(timerInterval)
+        }
+      }).then((result) => {
+        /* Read more about handling dismissals below */
+        if (result.dismiss === Swal.DismissReason.timer) {
         }
       })
-  });
-  }
+    }
+    
+    initHotelRooms(hotel){
+      this.rooms =  hotel.rooms
 
-  ngOnInit(): void {
-
+    this.pricePerDay = Number(hotel.minRate) / this.daysToBook
+      
+      this.loading = false
+    }
+    
+    ngOnDestroy(){
+      this.subscription.unsubscribe()
+    }
   }
-
-  initHotelImages(){
-   this.imagesArray =  this.hotel.images.map(val=>'http://photos.hotelbeds.com/giata/bigger/' + val.path)
-  }
-}
+  

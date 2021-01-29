@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Hotel, json } from '../model-response'
+import { Hotel } from '../model-response'
 import { HotelService } from '../services/hotel.service';
 @Component({
   selector: 'app-hotels-dashboard',
