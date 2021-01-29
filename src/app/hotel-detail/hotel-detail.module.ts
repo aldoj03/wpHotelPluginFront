@@ -7,7 +7,9 @@ import { SharedModule } from '../shared/shared/shared.module';
 
 
 @NgModule({
-  declarations: [HotelDetailComponent],
+  declarations: [
+    HotelDetailComponent,
+  ],
   imports: [
     CommonModule,
     HotelDetailRoutingModule,

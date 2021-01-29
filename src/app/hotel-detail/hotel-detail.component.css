@@ -113,10 +113,26 @@ transform: translateY(-8px);
     padding: 25px 30px;
     margin: 30px 0;
     box-shadow: 0px 0px 19px 0px #8080804a;
+    color: var(--blue);
+    font-weight: 500;
+    display: flex; 
+    align-items: center;
+    justify-content: space-between;
 
+}
+
+.dispobility-container svg{
+    fill: var(--blue);
+    position: relative;
+    top: 6px;
+    margin-right: 30px;
 }
 .rooms-information > div {
     background: white;
     margin-top: 15px;
     box-shadow: 0px 0px 19px 0px #8080804a;
+}
+
+.calendar span:first-child{
+    margin-right: 30px;
 }

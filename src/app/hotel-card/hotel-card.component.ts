@@ -18,7 +18,9 @@ export class HotelCardComponent implements OnInit {
   public starsNumber: Array<any> = [];
   public rank: number;
   public shortDesc: boolean;
+  public toggleShowMap: boolean = false
   public show: boolean;
+  public center;
   @Input() hotel: Hotel;
   @Input() checkDays: any;
   @Input() regimenFilters: any;
@@ -38,7 +40,7 @@ export class HotelCardComponent implements OnInit {
     this.daysToBook = this.hotelService.calDayToBook(this.checkDays.checkIn,this.checkDays.checkOut)
     this.pricePerDay = Number(this.hotel.minRate) / this.daysToBook
     this.urlMap = `https://maps.google.com/?q=${this.hotel.latitude},${this.hotel.longitude}`
-
+    this.center = {lat:this.hotel.latitude, lng: this.hotel.longitude}
     this.getStars()
   }
 
@@ -58,6 +60,10 @@ export class HotelCardComponent implements OnInit {
 
   goHotelDetail(){
     
+  }
+
+  showMap(){
+    this.toggleShowMap = !this.toggleShowMap
   }
   
 }

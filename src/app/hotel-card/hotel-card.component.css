@@ -121,6 +121,28 @@ footer p{
 .shortDesc{
     max-height: 105px;
 }
+.ver_mapa_btn{
+    background: none;
+    border:none;
+    cursor: pointer;
+    outline: none;
+}
+.ver_mapa_btn svg{
+    fill: var(--blue);
+    position: relative;
+    top: 4px;
+
+}
+
+.mask{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    background: rgba(128, 123, 123, 0.411);
+}
 
 @media(max-width:800px){
     .hotel-details-container{

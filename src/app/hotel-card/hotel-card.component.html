@@ -1,8 +1,8 @@
 <div class="hotel-card">
     <header>
         <div class="hotel-img-container">
-            <img  [src]="pathUrl" >
-            <div class="hotel-img-score">Muy bueno <br> {{rank  }}/10</div>
+            <img [src]="pathUrl">
+            <div class="hotel-img-score">{{rank }}/10</div>
         </div>
         <div class="hotel-details-container">
             <div class="hotel-info">
@@ -17,18 +17,28 @@
                                     d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"
                                     class=""></path>
                             </svg>
-                        </ng-container>                       
+                        </ng-container>
                     </div>
                 </div>
                 <div class="county">
                     <span class="country-flag"></span>
-                    <a [href]="urlMap" target="_blank">Ver en el mapa</a >
+                    <button class="ver_mapa_btn" (click)="showMap()">Ver en el mapa 
+                        <svg width="15px" aria-hidden="true"
+                            focusable="false" data-prefix="far" data-icon="map-marker-alt" role="img"
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"
+                            class="svg-inline--fa fa-map-marker-alt fa-w-12 fa-3x">
+                            <path fill=""
+                                d="M192 0C85.903 0 0 86.014 0 192c0 71.117 23.991 93.341 151.271 297.424 18.785 30.119 62.694 30.083 81.457 0C360.075 285.234 384 263.103 384 192 384 85.903 297.986 0 192 0zm0 464C64.576 259.686 48 246.788 48 192c0-79.529 64.471-144 144-144s144 64.471 144 144c0 54.553-15.166 65.425-144 272zm-80-272c0-44.183 35.817-80 80-80s80 35.817 80 80-35.817 80-80 80-80-35.817-80-80z"
+                                class=""></path>
+                        </svg></button>
                 </div>
-                <p [class.shortDesc]="shortDesc" class="hotel-description">{{hotel.description.content}} 
-                    <button (click)="shortDesc = !shortDesc" *ngIf="hotel.description.content.length > 940">Leer más</button></p>
+                <p [class.shortDesc]="shortDesc" class="hotel-description">{{hotel.description.content}}
+                    <button (click)="shortDesc = !shortDesc" *ngIf="hotel.description.content.length > 940">Leer
+                        más</button>
+                </p>
             </div>
             <div class="hotel-price">
-                <p>desde <span >{{pricePerDay| number:'1.0-0'}} €</span></p>
+                <p>desde <span>{{pricePerDay| number:'1.0-0'}} €</span></p>
                 <span>(x noche)</span>
             </div>
         </div>
@@ -42,16 +52,19 @@
     </div>
     <div class="roms-container">
         <ng-container *ngFor="let room of rooms; let i = index">
-            <app-hotel-room 
-            [regimenFilters] = "regimenFilters"
-            [daysToBook]="daysToBook" 
-            *ngIf="i == 0 || expandRoomsContent " [room]="room"></app-hotel-room>
+            <app-hotel-room [regimenFilters]="regimenFilters" [daysToBook]="daysToBook"
+                *ngIf="i == 0 || expandRoomsContent " [room]="room"></app-hotel-room>
         </ng-container>
     </div>
     <footer>
         <p (click)="toggleMoreRooms()">
-            <span *ngIf="!expandRoomsContent && rooms.length > 1">Ver todas las habitaciones y precios ({{rooms.length}})</span>
+            <span *ngIf="!expandRoomsContent && rooms.length > 1">Ver todas las habitaciones y precios
+                ({{rooms.length}})</span>
             <span *ngIf="expandRoomsContent">Ocultar habitaciones y precios</span>
         </p>
     </footer>
 </div>
+<ng-container *ngIf="toggleShowMap">
+    <app-map [center]="center" [markers]="[center]" (setShowMap)="showMap($event)"></app-map>
+    <div class="mask"></div>
+</ng-container>
