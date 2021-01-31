@@ -2,7 +2,19 @@
 
     <div class="main-content">
         <header>
-            <h2>{{hotel.name.content}}</h2>
+            <h2>{{hotel.name.content}}
+                <div class="stars-container">
+                    <ng-container *ngFor="let star of starsNumber">
+                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" role="img"
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"
+                            class="svg-inline--fa fa-star fa-w-18 fa-3x">
+                            <path fill=""
+                                d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"
+                                class=""></path>
+                        </svg>
+                    </ng-container>
+                </div>
+            </h2>
             <p>{{hotel.address.content}}, {{hotel.city.content}}, {{hotel.state.name}}
                 ({{hotel.country.description.content}})</p>
         </header>
@@ -15,7 +27,7 @@
                 </ng-container>
             </div>
             <div class="data-content">
-                <div class="calification_container">{{hotel.ranking / 10}}</div>
+                <div class="calification_container"><span>{{rank}}</span></div>
                 <div class="map_container">Mapa</div>
                 <div class="reserva_container">
                     <p>Habitaciones desde</p>
@@ -37,8 +49,8 @@
                             d="M400 64h-48V12c0-6.6-5.4-12-12-12h-8c-6.6 0-12 5.4-12 12v52H128V12c0-6.6-5.4-12-12-12h-8c-6.6 0-12 5.4-12 12v52H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48zM48 96h352c8.8 0 16 7.2 16 16v48H32v-48c0-8.8 7.2-16 16-16zm352 384H48c-8.8 0-16-7.2-16-16V192h384v272c0 8.8-7.2 16-16 16zM148 320h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm96 0h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm96 0h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm-96 96h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm-96 0h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm192 0h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12z"
                             class=""></path>
                     </svg>
-                    <span>Desde: {{checkInData.checkInData.checkIn | date:'EEEE d  MMMM '}} </span>
-                    <span>Hasta: {{checkInData.checkInData.checkOut | date:'EEEE d  MMMM '}} </span>
+                    <span>Desde: {{checkInData.checkInData.checkIn | date:'EEEE d MMMM '}} </span>
+                    <span>Hasta: {{checkInData.checkInData.checkOut | date:'EEEE d MMMM '}} </span>
                     <span>({{daysToBook}} noches)</span>
                 </span>
             </div>
@@ -60,6 +72,43 @@
             <div class="hotel-description">
                 <h2>{{hotel.name.content}}</h2>
                 {{hotel.description.content}}
+            </div>
+        </div>
+        <div class="hotel-services">
+            <h3>Servicios del hotel</h3>
+            <div class="services-container">
+                <div>
+                    <h4>Lugares cercanos</h4>
+                    <ul>
+                        <li *ngFor="let place of nearPlaces">
+                            {{place.description.content}} ( {{place.distance}} metros)
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Facilidades</h4>
+                    <ul>
+                        <li *ngFor="let facility of facilities">
+                            {{facility.description.content}}
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Restaurantes</h4>
+                    <ul>
+                        <li *ngFor="let food of foods">
+                            {{food.description.content}}
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Otros servicios</h4>
+                    <ul>
+                        <li *ngFor="let service of otherServices">
+                            {{service.description.content}}
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
 
