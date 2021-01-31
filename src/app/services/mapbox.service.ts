@@ -35,12 +35,8 @@ export class MapboxService {
   }
 
   addMarker(marker) {
-
-
     marker.addTo(this.map)
-    // this.marker.setPopup(this.popup) 
-    // this.marker.getElement().addEventListener('mouseenter',this.togglePopup)
-    // this.marker.getElement().addEventListener('mouseleave',this.togglePopup)
+ 
   }
 
   togglePopup() {
@@ -51,7 +47,7 @@ export class MapboxService {
   buildMarker(cords, text) {
 
     const el = document.createElement('div');
-    el.innerHTML = Number(text).toFixed(2)
+    el.innerHTML = text.price + '€'
     el.classList.add('custom_marker');
     const marker = new mapboxgl.Marker(el)
     marker.setLngLat({ lat: cords.lat, lng: cords.lng })
@@ -61,11 +57,12 @@ export class MapboxService {
 
   buildPopUp(text) {
     const popUp = new mapboxgl.Popup({ offset: 25 })
-    popUp.setHTML('<h3>' + text + '</h3><p></p>')
+    popUp.setHTML(`<h3>${text.name} €</h3><p>${text.address}</p><p>${text.price}</p>`)
+    return popUp
   }
 
 
-  addPopUp(marker, popUp) {
+  addPopUp(marker:mapboxgl.Marker, popUp:mapboxgl.Popup) {  
     marker.setPopup(popUp)
   }
 

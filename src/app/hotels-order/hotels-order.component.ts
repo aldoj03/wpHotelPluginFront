@@ -10,6 +10,7 @@ export class HotelsOrderComponent implements OnInit {
 
   @Input() total
   @Input() hotels:Array<Hotel>;
+  @Output() toggleMap = new EventEmitter();
 
   public urlMaps:string
   public orderItems : Array<String> = [];
@@ -25,14 +26,7 @@ export class HotelsOrderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.hotels.forEach((hotel,index) => {
-    //   let latlng = '';
-    //   if(index == 0){
-    //     latlng = `${hotel.latitude},${hotel.longitude}`
-    //   }
-    //   const latlng = ``
-    // });
-    // this.urlMaps = `https://maps.google.com/?q=23.135249,-82.359685`
+ 
   }
 
   setOrder(item){
@@ -52,4 +46,7 @@ export class HotelsOrderComponent implements OnInit {
     
   }
 }
+    showMap(){
+      this.toggleMap.emit(false)
+    }
 }

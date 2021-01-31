@@ -1,4 +1,5 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, OnDestroy } from '@angular/core';
+import { Marker, Popup } from 'mapbox-gl';
 import { MapboxService } from '../services/mapbox.service';
 
 @Component({
@@ -6,14 +7,14 @@ import { MapboxService } from '../services/mapbox.service';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements OnInit, OnDestroy {
 
-  @Output() setShowMap = new EventEmitter
+  @Output() toggleMap = new EventEmitter()
   @Input() center
   @Input() markers = []
   public popUps = []
-  public markersMap = []
-  public popUpMap = []
+  public markersMap: Array<Marker> = []
+  public popUpMap: Array<Popup> = []
   constructor(
     private mapService: MapboxService
   ) { }
@@ -26,26 +27,45 @@ export class MapComponent implements OnInit {
   }
 
   closeMap() {
-    this.setShowMap.emit(true)
+    this.toggleMap.emit(true)
   }
 
   setMarkers() {
 
-     this.markers.forEach(marker => {
+    this.markers.forEach(marker => {
       const cords = {
-        lat: marker.cords.lat,
-        lng: marker.cords.lng
+        lat: marker.lat,
+        lng: marker.lng
       }
-      
-     this.markersMap.push(this.mapService.buildMarker(cords, marker.text)) 
-     this.popUpMap.push(this.mapService.buildPopUp( marker.text))
-    })
-    
 
-    this.markersMap.forEach((marker,i) => {
-       this.mapService.addMarker(marker)
-       this.mapService.addPopUp(marker,this.popUpMap[i])
+      this.markersMap.push(this.mapService.buildMarker(cords, marker.text))
+      this.popUpMap.push(this.mapService.buildPopUp(marker.text))
     })
+
+
+    this.markersMap.forEach((marker, i) => {
+      this.mapService.addMarker(marker)
+      this.mapService.addPopUp(marker, this.popUpMap[i])
+      this.onMarkerHover(marker)
+    })
+  }
+
+  onMarkerHover(marker: Marker) {
+    marker.getElement().addEventListener('mouseover', () => {
+      marker.togglePopup()
+    })
+    marker.getElement().addEventListener('mouseleave', () => {
+      marker.togglePopup()
+
+    })
+  }
+
+  togglePopup(marker: Marker) {
+    marker.togglePopup()
+
+  }
+  ngOnDestroy() {
+
   }
 
 

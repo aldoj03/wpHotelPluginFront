@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import { Hotel, Room } from '../model-response';
 import { HotelService } from '../services/hotel.service';
 
@@ -18,9 +18,9 @@ export class HotelCardComponent implements OnInit {
   public starsNumber: Array<any> = [];
   public rank: number;
   public shortDesc: boolean;
-  public toggleShowMap: boolean = false
   public show: boolean;
   public center;
+  @Output() toggleMap = new EventEmitter()
   @Input() hotel: Hotel;
   @Input() checkDays: any;
   @Input() regimenFilters: any;
@@ -63,7 +63,11 @@ export class HotelCardComponent implements OnInit {
   }
 
   showMap(){
-    this.toggleShowMap = !this.toggleShowMap
+    const center = {
+      lat: this.hotel.latitude,
+      lng: this.hotel.longitude,
+    }
+    this.toggleMap.emit(center)
   }
   
 }

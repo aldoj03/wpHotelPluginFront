@@ -11,7 +11,7 @@ export class HotelsDashboardComponent implements OnInit {
 
 
   public hotels: Array<Hotel>;
-  public loading:boolean
+  public loading: boolean
   public hotelsFiltered: Array<any>;
   public checkDays: any;
   public pricesFilter: Array<string>;
@@ -20,21 +20,28 @@ export class HotelsDashboardComponent implements OnInit {
   public categoriesFilter: Array<any>;
   public searchString: string = '';
   public total;
+  public toggleShowMap: boolean = false;
+  public centerMap: any;
+  public hotelsMarkers: any;
   constructor(
     private hotelService: HotelService,
-    private route: ActivatedRoute
   ) {
+    const checkInData = JSON.parse(window.localStorage.getItem('checkInData'))
+    this.centerMap = {
+      lat: checkInData.lat,
+      lng: checkInData.lng,
+    }
     this.pricesFilter = []
     this.categoriesFilter = []
     this.regimenFilters = []
     this.total = 0
     this.loading = true
   }
-  
-  
-  ngOnInit(): void { 
-  
-      this.getHotels()
+
+
+  ngOnInit(): void {
+
+    this.getHotels()
 
   }
 
@@ -46,20 +53,13 @@ export class HotelsDashboardComponent implements OnInit {
   filterHotels() {
 
     this.hotelsFiltered = this.filterPrice()
-    // console.log(this.hotelsFiltered);
 
     this.hotelsFiltered = this.filterCategory()
-    // console.log(this.hotelsFiltered);
 
     this.hotelsFiltered = this.filterSeachString()
 
 
     this.hotelsFiltered = this.filterRegimen()
-    // console.log(this.hotelsFiltered);
-
-    // this.hotelsFiltered = this.filterGlobal()
-
-    // this.getFilteredHotels()
 
 
   }
@@ -80,9 +80,9 @@ export class HotelsDashboardComponent implements OnInit {
       const hotelRate = Number(hotel.minRate)
       const days = this.hotelService.calDayToBook(this.checkDays.checkIn, this.checkDays.checkOut)
       const pricePerDay = hotelRate / days
-      
+
       params.forEach(val => {
-        
+
         if (pricePerDay >= val.min && pricePerDay <= val.max) hotelsFiltered.push(hotel)
 
       })
@@ -124,21 +124,21 @@ export class HotelsDashboardComponent implements OnInit {
   }
 
 
-  
 
 
 
-  filterRegimen(){
+
+  filterRegimen() {
     if (this.regimenFilters.length == 0) return this.hotelsFiltered
     let arrayLocal = []
 
     this.hotelsFiltered.forEach(hotel => {
 
       this.regimenFilters.forEach(regimen => {
-        if(hotel.boardCodes){
+        if (hotel.boardCodes) {
 
           if (hotel.boardCodes.includes(regimen)) arrayLocal.push(hotel)
-        }else{
+        } else {
           arrayLocal.push(hotel)
         }
       });
@@ -148,35 +148,73 @@ export class HotelsDashboardComponent implements OnInit {
     return [...arrayLocal]
   }
 
- setPointFilter(point){
-  this.pointsFilter = point
- }
+  setPointFilter(point) {
+    this.pointsFilter = point
+  }
 
- getNewPage(){
-   console.log(this.hotelService.getPagination);
-   this.getHotels(true)
- }
+  getNewPage() {
+    console.log(this.hotelService.getPagination);
+    this.getHotels(true)
+  }
 
- getHotels(filter = false){
-   this.loading = true
-  const id = window.location.hash.replace('#','');
-  const page = this.hotelService.getPagination
-  this.hotelService.getHotels(id,page).subscribe(val =>{
-    console.log(val);
-    this.hotels = val['hotels']
-    this.total = val['checkDays'].total
-    this.hotelsFiltered = [...this.hotels]
-    if(filter){
-      this.filterHotels()
+  getHotels(filter = false) {
+    this.loading = true
+    const id = window.location.hash.replace('#', '');
+    const page = this.hotelService.getPagination
+    this.hotelService.getHotels(id, page).subscribe(val => {
+      console.log(val);
+      this.hotels = val['hotels']
+      this.total = val['checkDays'].total
+      this.hotelsFiltered = [...this.hotels]
+      if (filter) {
+        this.filterHotels()
+      }
+
+      this.checkDays = {
+        checkIn: val['checkDays'].checkIn,
+        checkOut: val['checkDays'].checkOut
+      }
+      this.fillHotelCords()
+      this.loading = false
+    })
+
+  }
+  toggleMap(event) {
+    console.log(event);
+    if(event != false){
+
+      this.centerMap = event
+    }else{
+      const checkInData = JSON.parse(window.localStorage.getItem('checkInData'))
+      this.centerMap = {
+        lat: checkInData.lat,
+        lng: checkInData.lng,
+      }
+
     }
-    // console.log(this.hotels);
-    this.checkDays = {
-      checkIn: val['checkDays'].checkIn,
-      checkOut: val['checkDays'].checkOut
-    }
-    this.loading = false
-  })
+    
+    this.toggleShowMap = !this.toggleShowMap
+
+  }
+
+  fillHotelCords() {
+    this.hotelsMarkers = this.hotels.map(hotel => {
+      const days = this.hotelService.calDayToBook(this.checkDays.checkIn, this.checkDays.checkOut)
+      const pricePerDay = Number(hotel.minRate) / days
+      const object = {
+        lat: hotel.latitude,
+        lng: hotel.longitude,
+        text: {
+          price: Math.round(pricePerDay),
+          name: hotel.name,
+          address: hotel.address.content
+        }
+      }
+      return object
+    })
 
 
- }
+  }
+
+
 }
