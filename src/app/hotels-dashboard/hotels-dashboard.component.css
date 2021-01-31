@@ -15,6 +15,16 @@
     z-index: 10;
 
 }
+.mask{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    background: rgba(128, 123, 123, 0.411);
+}
+
 .hotels-results{
     flex: 1;
     padding: 30px 0px 30px 30px;

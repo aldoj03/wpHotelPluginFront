@@ -32,9 +32,8 @@
                                 class=""></path>
                         </svg></button>
                 </div>
-                <p [class.shortDesc]="shortDesc" class="hotel-description">{{hotel.description.content}}
-                    <button (click)="shortDesc = !shortDesc" *ngIf="hotel.description.content.length > 940">Leer
-                        más</button>
+                <p [class.shortDesc]="shortDesc" class="hotel-description">{{description}}
+                  
                 </p>
             </div>
             <div class="hotel-price">

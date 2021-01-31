@@ -8,7 +8,6 @@ import { HotelsOrderComponent } from '../hotels-order/hotels-order.component';
 import { HotelCardComponent } from '../hotel-card/hotel-card.component';
 import { PaginationComponent } from '../pagination/pagination.component';
 import { SharedModule } from '../shared/shared/shared.module';
-import { MapComponent } from '../map/map.component';
 
 
 @NgModule({
@@ -18,7 +17,6 @@ import { MapComponent } from '../map/map.component';
     HotelsOrderComponent,
     HotelCardComponent,
     PaginationComponent,
-    MapComponent
   ],
   imports: [
     CommonModule,

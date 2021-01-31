@@ -20,6 +20,7 @@ export class HotelCardComponent implements OnInit {
   public shortDesc: boolean;
   public show: boolean;
   public center;
+  public description;
   @Output() toggleMap = new EventEmitter()
   @Input() hotel: Hotel;
   @Input() checkDays: any;
@@ -42,6 +43,7 @@ export class HotelCardComponent implements OnInit {
     this.urlMap = `https://maps.google.com/?q=${this.hotel.latitude},${this.hotel.longitude}`
     this.center = {lat:this.hotel.latitude, lng: this.hotel.longitude}
     this.getStars()
+    this.getDescription()
   }
 
   toggleMoreRooms() {
@@ -57,11 +59,10 @@ export class HotelCardComponent implements OnInit {
       
     }
   }
-
-  goHotelDetail(){
-    
+  getDescription(){
+    this.description  = this.hotel.description.content.substring(0,530)
+    // this.hotel.description.content.length > 
   }
-
   showMap(){
     const center = {
       lat: this.hotel.latitude,

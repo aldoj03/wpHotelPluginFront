@@ -29,6 +29,7 @@ export class HotelDetailComponent implements OnInit, OnDestroy {
   public otherServices = []
   public starsNumber = []
   public rank 
+  public marker  
 
   constructor(
     private route: ActivatedRoute,
@@ -60,6 +61,7 @@ export class HotelDetailComponent implements OnInit, OnDestroy {
           const data = JSON.parse(val2)
           console.log(data)
           this.initHotelRooms(data.hotels.hotels[0])
+          this.setMapInfo()
         }
       });
   }
@@ -131,4 +133,16 @@ export class HotelDetailComponent implements OnInit, OnDestroy {
 
     }
   }
+
+  setMapInfo(){
+     this.marker = {
+      lat: this.hotel.coordinates.latitude,
+      lng: this.hotel.coordinates.longitude,
+      text: {
+        price: Math.round(this.pricePerDay),
+      }
+    }
+    
+  }
+ 
 }

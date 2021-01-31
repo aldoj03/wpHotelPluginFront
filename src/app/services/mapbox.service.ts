@@ -31,6 +31,9 @@ export class MapboxService {
       zoom: this.zoom,
       center: [this.lng, this.lat]
     });
+    this.map.on('load', () => {
+      this.map.resize();
+});  
     // this.map.addControl(new mapboxgl.NavigationControl());
   }
 
@@ -57,7 +60,7 @@ export class MapboxService {
 
   buildPopUp(text) {
     const popUp = new mapboxgl.Popup({ offset: 25 })
-    popUp.setHTML(`<h3>${text.name} €</h3><p>${text.address}</p><p>${text.price}</p>`)
+    popUp.setHTML(`<h3>${text.name} </h3><p>${text.address}</p><p>${text.price} €</p>`)
     return popUp
   }
 

@@ -28,7 +28,7 @@
             </div>
             <div class="data-content">
                 <div class="calification_container"><span>{{rank}}</span></div>
-                <div class="map_container">Mapa</div>
+                <!-- <div class="map_container">Mapa</div> -->
                 <div class="reserva_container">
                     <p>Habitaciones desde</p>
                     <p>{{pricePerDay| number:'1.0-0'}} € por noche</p>
@@ -71,7 +71,19 @@
         <div class="hotel-information">
             <div class="hotel-description">
                 <h2>{{hotel.name.content}}</h2>
-                {{hotel.description.content}}
+                <div>
+                    <div >
+                        <app-map
+                         [center]="{lat:marker.lat,lng:marker.lng}" 
+                        [markers]="[marker]" 
+                        [smallMap]="true" 
+                        [hasPopup]="false"
+                        [closeBtn]="false"></app-map>
+                    </div>
+                    <p>
+                        {{hotel.description.content}}
+                    </p>
+                </div>
             </div>
         </div>
         <div class="hotel-services">

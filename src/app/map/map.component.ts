@@ -12,6 +12,9 @@ export class MapComponent implements OnInit, OnDestroy {
   @Output() toggleMap = new EventEmitter()
   @Input() center
   @Input() markers = []
+  @Input() smallMap = false
+  @Input() closeBtn = true
+  @Input() hasPopup = true
   public popUps = []
   public markersMap: Array<Marker> = []
   public popUpMap: Array<Popup> = []
@@ -21,6 +24,7 @@ export class MapComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     console.log(this.center);
+    console.log(this.markers);
 
     this.mapService.buildMap(this.center)
     this.setMarkers()
@@ -39,14 +43,20 @@ export class MapComponent implements OnInit, OnDestroy {
       }
 
       this.markersMap.push(this.mapService.buildMarker(cords, marker.text))
-      this.popUpMap.push(this.mapService.buildPopUp(marker.text))
+      if(this.hasPopup){
+
+        this.popUpMap.push(this.mapService.buildPopUp(marker.text))
+      }
     })
 
 
     this.markersMap.forEach((marker, i) => {
       this.mapService.addMarker(marker)
-      this.mapService.addPopUp(marker, this.popUpMap[i])
-      this.onMarkerHover(marker)
+      if(this.hasPopup){
+      
+        this.mapService.addPopUp(marker, this.popUpMap[i])
+        this.onMarkerHover(marker)
+      }
     })
   }
 
